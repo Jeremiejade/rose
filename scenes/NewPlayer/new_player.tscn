@@ -1,0 +1,291 @@
+[gd_scene load_steps=15 format=3 uid="uid://dymyjfjvgoyg5"]
+
+[ext_resource type="Texture2D" uid="uid://cjfkbhvehx4x" path="res://assets/newPlayer/back_leg.png" id="1_8aldm"]
+[ext_resource type="Script" uid="uid://d5t03gg8w4aj" path="res://scenes/NewPlayer/new_player.gd" id="1_dq5k8"]
+[ext_resource type="Texture2D" uid="uid://bj6ss55f5vnmo" path="res://assets/newPlayer/saw.png" id="2_lvudr"]
+[ext_resource type="Texture2D" uid="uid://cxvofn2nxg2q2" path="res://assets/newPlayer/launch_grenade.png" id="4_30chd"]
+[ext_resource type="PackedScene" uid="uid://13ap584344ym" path="res://scenes/BulletGun/gun.tscn" id="4_jf0ni"]
+[ext_resource type="Texture2D" uid="uid://cvsjtlobgen1m" path="res://assets/newPlayer/body.png" id="5_pqvt8"]
+[ext_resource type="Texture2D" uid="uid://4jmc02h0rhj5" path="res://assets/newPlayer/front_leg.png" id="6_7wfrq"]
+[ext_resource type="Texture2D" uid="uid://bovydj48g55ro" path="res://assets/newPlayer/fuel-gauge.png" id="8_i1n5h"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3864k"]
+radius = 59.0
+height = 138.0
+
+[sub_resource type="Animation" id="Animation_mj617"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprites/BackLeg:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-21, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprites/BackLeg:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprites/FrontLeg:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(19, 5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("sprites/FrontLeg:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_lv4yx"]
+resource_name = "idle"
+length = 0.1
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprites/FrontLeg:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(19, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprites/FrontLeg:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprites/BackLeg:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-21, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("sprites/BackLeg:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_l1i7o"]
+resource_name = "jump"
+length = 0.5
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprites/FrontLeg:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(19, 5), Vector2(19, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprites/FrontLeg:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0849539]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprites/BackLeg:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-13, 5), Vector2(-13, 5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("sprites/BackLeg:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.496712, -0.585859]
+}
+
+[sub_resource type="Animation" id="Animation_14177"]
+resource_name = "walk"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprites/BackLeg:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-21, 1), Vector2(-24, 2), Vector2(9, 4), Vector2(-24, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprites/BackLeg:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.360382, -0.534643, -0.360382]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprites/FrontLeg:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(19, 5), Vector2(24, -3), Vector2(16, 2), Vector2(24, -3)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("sprites/FrontLeg:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.546629, 0.928425, 0.546629]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ut3gk"]
+_data = {
+&"RESET": SubResource("Animation_mj617"),
+&"idle": SubResource("Animation_lv4yx"),
+&"jump": SubResource("Animation_l1i7o"),
+&"walk": SubResource("Animation_14177")
+}
+
+[node name="NewPlayer" type="CharacterBody2D"]
+script = ExtResource("1_dq5k8")
+metadata/_edit_horizontal_guides_ = [-10.0, 70.0]
+
+[node name="sprites" type="Node2D" parent="."]
+
+[node name="BackLeg" type="Sprite2D" parent="sprites"]
+position = Vector2(-21, 1)
+texture = ExtResource("1_8aldm")
+offset = Vector2(3, 30)
+
+[node name="Saw" type="Sprite2D" parent="sprites"]
+visible = false
+position = Vector2(0, -10)
+texture = ExtResource("2_lvudr")
+
+[node name="Gun" parent="sprites" instance=ExtResource("4_jf0ni")]
+position = Vector2(0, -10)
+
+[node name="LaunchGrenade" type="Sprite2D" parent="sprites"]
+visible = false
+position = Vector2(0, -10)
+texture = ExtResource("4_30chd")
+offset = Vector2(33, 0)
+
+[node name="Body" type="Sprite2D" parent="sprites"]
+position = Vector2(0, -10)
+texture = ExtResource("5_pqvt8")
+
+[node name="FrontLeg" type="Sprite2D" parent="sprites"]
+position = Vector2(19, 5)
+texture = ExtResource("6_7wfrq")
+offset = Vector2(16, 29)
+
+[node name="FuelGauge" type="TextureProgressBar" parent="sprites/FrontLeg"]
+offset_left = 8.10221
+offset_top = -0.702805
+offset_right = 46.1022
+offset_bottom = 13.2972
+rotation = 1.10501
+pivot_offset = Vector2(-0.102209, 7.55995)
+value = 100.0
+fill_mode = 1
+texture_under = ExtResource("8_i1n5h")
+texture_progress = ExtResource("8_i1n5h")
+tint_under = Color(0.172549, 1, 1, 1)
+tint_over = Color(1, 0.14902, 0, 1)
+tint_progress = Color(0.59318, 0.199138, 0.842679, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_3864k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ut3gk")
+}
