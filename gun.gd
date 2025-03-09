@@ -2,7 +2,7 @@ extends Sprite2D
 
 const BULLET_GUN = preload("res://scenes/BulletGun/bullet_gun.tscn")
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	look_at(get_global_mouse_position())
 	if Input.is_action_just_pressed("fire"): 
 		var bullet_instance = BULLET_GUN.instantiate()

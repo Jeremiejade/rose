@@ -13,7 +13,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free() # Replace with function body.
 
 
-func _on_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+func _on_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	if(body.name == "Ground" and !isExplosing):
 		$Bullet.visible = false
 		$AnimatedSprite2D.play("boom")
