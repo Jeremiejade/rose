@@ -40,6 +40,8 @@ func flying(direction: float, delta: float) -> void:
 	if direction != 0:
 		rotate(direction * delta)
 	if Input.is_action_pressed("jump") and curentJumpFuel > 0:
+		$sprites/PowerFuel.start = true
+		print($sprites/PowerFuel.start)
 		var v = Vector2(0,JUMP_VELOCITY).rotated(rotation)
 		curentJumpFuel -= 500 * delta
 		velocity += v * delta * 3.5

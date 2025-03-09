@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dymyjfjvgoyg5"]
+[gd_scene load_steps=16 format=3 uid="uid://dymyjfjvgoyg5"]
 
 [ext_resource type="Texture2D" uid="uid://cjfkbhvehx4x" path="res://assets/newPlayer/back_leg.png" id="1_8aldm"]
 [ext_resource type="Script" uid="uid://d5t03gg8w4aj" path="res://scenes/NewPlayer/new_player.gd" id="1_dq5k8"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://13ap584344ym" path="res://scenes/BulletGun/gun.tscn" id="4_jf0ni"]
 [ext_resource type="Texture2D" uid="uid://cvsjtlobgen1m" path="res://assets/newPlayer/body.png" id="5_pqvt8"]
 [ext_resource type="Texture2D" uid="uid://4jmc02h0rhj5" path="res://assets/newPlayer/front_leg.png" id="6_7wfrq"]
+[ext_resource type="PackedScene" uid="uid://ldk11y02bjpx" path="res://scenes/NewPlayer/power_fuel.tscn" id="7_d3wdy"]
 [ext_resource type="Texture2D" uid="uid://bovydj48g55ro" path="res://assets/newPlayer/fuel-gauge.png" id="8_i1n5h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3864k"]
@@ -257,6 +258,9 @@ visible = false
 position = Vector2(0, -10)
 texture = ExtResource("4_30chd")
 offset = Vector2(33, 0)
+
+[node name="PowerFuel" parent="sprites" instance=ExtResource("7_d3wdy")]
+position = Vector2(0, 47)
 
 [node name="Body" type="Sprite2D" parent="sprites"]
 position = Vector2(0, -10)
