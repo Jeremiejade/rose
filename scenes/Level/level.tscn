@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://ue6otj6bwght"]
+[gd_scene load_steps=6 format=3 uid="uid://ue6otj6bwght"]
 
 [ext_resource type="Texture2D" uid="uid://h5iq4it5kewa" path="res://assets/level_1/ground.jpg" id="1_4tl78"]
 [ext_resource type="PackedScene" uid="uid://dymyjfjvgoyg5" path="res://scenes/NewPlayer/new_player.tscn" id="3_ggv0q"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_b5p4l"]
 distance = -621.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_676nv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vlvsn"]
+size = Vector2(36, 705)
 
 [node name="Level" type="Node2D"]
 
@@ -25,3 +30,14 @@ region_rect = Rect2(0, 0, 1800, 31.54)
 [node name="NewPlayer" parent="." instance=ExtResource("3_ggv0q")]
 position = Vector2(89, 516)
 scale = Vector2(0.5, 0.5)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_676nv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-17, 342.5)
+shape = SubResource("RectangleShape2D_vlvsn")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1820, 356)
+shape = SubResource("RectangleShape2D_vlvsn")

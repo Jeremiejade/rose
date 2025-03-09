@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 window/size/viewport_width=1800
 window/size/viewport_height=720
 
+[editor]
+
+movie_writer/mjpeg_quality=0.21
+
 [input]
 
 move_left={
