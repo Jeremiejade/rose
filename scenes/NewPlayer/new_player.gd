@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		flying(direction, delta)
 		
-	if Input.is_action_just_pressed("jump") and curentJumpFuel > 0 and is_on_floor():
+	if Input.is_action_just_pressed("jump") and curentJumpFuel > 0 and is_on_floor() and rotation == 0:
 		velocity.y = JUMP_VELOCITY
 
 	var animationState = _animationState(direction);
@@ -45,7 +45,7 @@ func bounceManagement(colliderName: String, oldVelocity: Vector2) -> void:
 	if colliderName == "Wall":
 		velocity.x = -(oldVelocity.x/1.5)
 	if colliderName == "Ground":
-		if rotation < 1 and rotation > -1 or oldVelocity.y < 300:
+		if (rotation < 1 and rotation > -1) or oldVelocity.y < 300:
 			rotation = 0
 		else: 
 			velocity.y = -(oldVelocity.y/2)
