@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://k43skcolxlck"]
+
+[ext_resource type="Texture2D" uid="uid://dtvehyravo3vp" path="res://assets/rose/rose.png" id="1_hydmc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tlg6t"]
+radius = 53.0
+height = 144.0
+
+[node name="rose" type="StaticBody2D"]
+
+[node name="Rose" type="Sprite2D" parent="."]
+texture = ExtResource("1_hydmc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("CapsuleShape2D_tlg6t")

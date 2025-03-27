@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ue6otj6bwght"]
+[gd_scene load_steps=8 format=3 uid="uid://ue6otj6bwght"]
 
 [ext_resource type="Texture2D" uid="uid://h5iq4it5kewa" path="res://assets/level_1/ground.jpg" id="1_4tl78"]
 [ext_resource type="PackedScene" uid="uid://dymyjfjvgoyg5" path="res://scenes/NewPlayer/new_player.tscn" id="3_ggv0q"]
+[ext_resource type="PackedScene" uid="uid://b5jwjmycjhg30" path="res://scenes/enemies/enemy_crs.tscn" id="3_vlvsn"]
+[ext_resource type="PackedScene" uid="uid://k43skcolxlck" path="res://scenes/rose/rose.tscn" id="4_v753x"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_b5p4l"]
 distance = -621.0
@@ -27,6 +29,10 @@ texture = ExtResource("1_4tl78")
 region_enabled = true
 region_rect = Rect2(0, 0, 1800, 31.54)
 
+[node name="rose" parent="." instance=ExtResource("4_v753x")]
+position = Vector2(916, 603)
+scale = Vector2(0.5, 0.5)
+
 [node name="NewPlayer" parent="." instance=ExtResource("3_ggv0q")]
 position = Vector2(89, 516)
 scale = Vector2(0.5, 0.5)
@@ -41,3 +47,7 @@ shape = SubResource("RectangleShape2D_vlvsn")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Wall"]
 position = Vector2(1820, 356)
 shape = SubResource("RectangleShape2D_vlvsn")
+
+[node name="EnemyCRS" parent="." instance=ExtResource("3_vlvsn")]
+position = Vector2(1156, 594)
+scale = Vector2(0.5, 0.5)
