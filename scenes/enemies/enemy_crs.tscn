@@ -506,11 +506,11 @@ rotation = 0.214952
 texture = ExtResource("6_12ic4")
 offset = Vector2(-36.9048, 18.2783)
 
-[node name="Area2D" type="Area2D" parent="body/CrsFrontArm"]
+[node name="wepon" type="Area2D" parent="body/CrsFrontArm"]
 position = Vector2(-31.2784, 32.7044)
 rotation = 2.85615
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="body/CrsFrontArm/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="body/CrsFrontArm/wepon"]
 position = Vector2(20.768, 2.98319)
 shape = SubResource("RectangleShape2D_brrmv")
 
@@ -530,4 +530,5 @@ position = Vector2(62, -9)
 position = Vector2(-80, -13)
 shape = SubResource("SegmentShape2D_g0u10")
 
+[connection signal="body_entered" from="body/CrsFrontArm/wepon" to="." method="_on_wepon_body_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

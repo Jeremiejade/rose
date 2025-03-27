@@ -35,6 +35,7 @@ animations = [{
 }]
 
 [node name="Bullet_Gun" type="Area2D"]
+collision_layer = 7
 script = ExtResource("1_yaof3")
 
 [node name="Bullet" type="Sprite2D" parent="."]

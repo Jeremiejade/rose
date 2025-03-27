@@ -17,12 +17,21 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	print(body.name)
-	if body.name == 'rose':
+	if body.name == 'rose' and state != 'attack':
 		state = 'attack'
+		
 
 func handleAnimation() -> void:
 	if state == 'walk':
 		$AnimationPlayer.play("walk")
 	elif state == 'attack':
 		$AnimationPlayer.play("attack")
+
+
+
+func _on_wepon_body_entered(body: Node2D) -> void:
+	if body.name == 'rose' :
+		body.addCRSAttack({
+				"id": self.get_instance_id(),
+				"damage": 10
+			})

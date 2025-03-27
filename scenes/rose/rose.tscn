@@ -1,12 +1,87 @@
-[gd_scene load_steps=3 format=3 uid="uid://k43skcolxlck"]
+[gd_scene load_steps=13 format=3 uid="uid://k43skcolxlck"]
 
 [ext_resource type="Texture2D" uid="uid://dtvehyravo3vp" path="res://assets/rose/rose.png" id="1_hydmc"]
+[ext_resource type="Script" uid="uid://bjtonm1m3pb7y" path="res://scenes/rose/rose.gd" id="1_tlg6t"]
+[ext_resource type="Texture2D" uid="uid://ce71vajg7j5dk" path="res://assets/rose/texture_glass.png" id="2_us4hs"]
+[ext_resource type="Texture2D" uid="uid://eu8n1gs1pg4u" path="res://assets/rose/felure.png" id="3_63b50"]
+[ext_resource type="Texture2D" uid="uid://dwl0t0heca5j5" path="res://assets/rose/dead_rose.png" id="4_yceic"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_us4hs"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(60, 60, 1)
+angle_min = -720.0
+angle_max = 720.0
+inherit_velocity_ratio = 1.0
+direction = Vector3(0, -1, 0)
+spread = 30.0
+initial_velocity_min = 369.83
+initial_velocity_max = 479.35
+gravity = Vector3(0, 90, 0)
+damping_min = 11.67
+damping_max = 11.67
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tlg6t"]
 radius = 53.0
 height = 144.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_yceic"]
+atlas = ExtResource("3_63b50")
+region = Rect2(0, 0, 110, 147)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_us4hs"]
+atlas = ExtResource("3_63b50")
+region = Rect2(110, 0, 110, 147)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ajo2"]
+atlas = ExtResource("3_63b50")
+region = Rect2(220, 0, 110, 147)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysnrn"]
+atlas = ExtResource("3_63b50")
+region = Rect2(330, 0, 110, 147)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_busqh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yceic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_us4hs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ajo2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ysnrn")
+}],
+"loop": true,
+"name": &"felure",
+"speed": 5.0
+}]
+
 [node name="rose" type="StaticBody2D"]
+script = ExtResource("1_tlg6t")
+metadata/_edit_horizontal_guides_ = [65.0]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -3)
+emitting = false
+amount = 20
+texture = ExtResource("2_us4hs")
+lifetime = 5.52
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+randomness = 0.19
+interpolate = false
+collision_base_size = 3.65
+trail_lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_us4hs")
 
 [node name="Rose" type="Sprite2D" parent="."]
 texture = ExtResource("1_hydmc")
@@ -14,3 +89,17 @@ texture = ExtResource("1_hydmc")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
 shape = SubResource("CapsuleShape2D_tlg6t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0.5, 0)
+scale = Vector2(0.990909, 1)
+sprite_frames = SubResource("SpriteFrames_busqh")
+animation = &"felure"
+frame = 1
+frame_progress = 0.0755674
+
+[node name="DeadRose" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 27)
+texture = ExtResource("4_yceic")

@@ -16,6 +16,8 @@ size = Vector2(36, 705)
 [node name="Level" type="Node2D"]
 
 [node name="Ground" type="StaticBody2D" parent="."]
+collision_layer = 7
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
 position = Vector2(0, 17)
@@ -32,10 +34,13 @@ region_rect = Rect2(0, 0, 1800, 31.54)
 [node name="rose" parent="." instance=ExtResource("4_v753x")]
 position = Vector2(916, 603)
 scale = Vector2(0.5, 0.5)
+collision_layer = 3
 
 [node name="NewPlayer" parent="." instance=ExtResource("3_ggv0q")]
 position = Vector2(89, 516)
 scale = Vector2(0.5, 0.5)
+collision_layer = 2
+collision_mask = 2
 
 [node name="Wall" type="StaticBody2D" parent="."]
 physics_material_override = SubResource("PhysicsMaterial_676nv")
@@ -51,3 +56,5 @@ shape = SubResource("RectangleShape2D_vlvsn")
 [node name="EnemyCRS" parent="." instance=ExtResource("3_vlvsn")]
 position = Vector2(1156, 594)
 scale = Vector2(0.5, 0.5)
+collision_layer = 3
+collision_mask = 3
