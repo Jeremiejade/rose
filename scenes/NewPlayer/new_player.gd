@@ -6,9 +6,17 @@ const JUMP_VELOCITY = -400.0
 
 const TOTAL_JUMP_FUEL = 300
 var curentJumpFuel = TOTAL_JUMP_FUEL;
-var jumpFuelIsLoad = false
+var jumpFuelIsLoad = false;
+
+var ATTACKS = []
 
 func _physics_process(delta: float) -> void:
+	
+	for attack in ATTACKS:
+		print(attack)
+		velocity.x = attack.direction * attack.damage * SPEED
+		ATTACKS = []
+		pass
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -32,7 +40,7 @@ func _physics_process(delta: float) -> void:
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		bounceManagement(collision.get_collider().name, oldVelocity)
-		
+	
 
 func refielFuel(delta: float) -> void:
 	if is_on_floor():
@@ -72,3 +80,6 @@ func _animationState(direction: float) -> String:
 	if direction: 
 		return "walk"
 	return "idle"
+
+func addAttack(attack) :
+	ATTACKS.push_front(attack)

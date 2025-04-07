@@ -1,22 +1,22 @@
 extends StaticBody2D
 
-var CRS_ATTACKS = []
-var CRS_ATTACK_IDS = []
+var ATTACKS = []
+var ATTACK_IDS = []
 @export var life: int = 100
 
 func _physics_process(_delta):
-	for attack in CRS_ATTACKS:
-		CRS_ATTACK_IDS = CRS_ATTACK_IDS.filter(func(id): return id != attack.id)
+	for attack in ATTACKS:
+		ATTACK_IDS = ATTACK_IDS.filter(func(id): return id != attack.id)
 		life -= attack.damage
-	CRS_ATTACKS = []
+	ATTACKS = []
 	handleFelure()
 
-func addCRSAttack(attack):
-	var alreadyAttacking = CRS_ATTACK_IDS.find(attack.id)
+func addAttack(attack):
+	var alreadyAttacking = ATTACK_IDS.find(attack.id)
 
 	if alreadyAttacking == -1:
-		CRS_ATTACK_IDS.push_front(attack.id)
-		CRS_ATTACKS.push_front(attack)
+		ATTACK_IDS.push_front(attack.id)
+		ATTACKS.push_front(attack)
 
 func handleFelure():
 	if life > 80 :
