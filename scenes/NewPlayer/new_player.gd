@@ -7,16 +7,21 @@ const JUMP_VELOCITY = -400.0
 const TOTAL_JUMP_FUEL = 300
 var curentJumpFuel = TOTAL_JUMP_FUEL;
 var jumpFuelIsLoad = false;
+var slidingState = { 
+	"isActive": false,
+	"direction": 0,
+	"puissance": 0,
+	};
 
 var ATTACKS = []
 
 func _physics_process(delta: float) -> void:
-	
 	for attack in ATTACKS:
-		print(attack)
-		velocity.x = attack.direction * attack.damage * SPEED
+		slidingState.puissance = attack.damage * SPEED / 4
+		velocity.x = slidingState.puissance * attack.direction
+		slidingState.isActive = true
+		slidingState.direction = attack.direction
 		ATTACKS = []
-		pass
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -25,15 +30,18 @@ func _physics_process(delta: float) -> void:
 	refielFuel(delta)
 
 	var direction = Input.get_axis("move_left", "move_right")
-	if is_on_floor() and rotation == 0:
-		movingOnTheFloor(direction)
-	else:
-		flying(direction, delta)
-		
+	if slidingState.isActive:
+		sliding(direction, delta)
+	else: 
+		if is_on_floor() and rotation == 0:
+			movingOnTheFloor(direction)
+		else:
+			flying(direction, delta)
+			
 	if Input.is_action_just_pressed("jump") and curentJumpFuel > 0 and is_on_floor() and rotation == 0:
 		velocity.y = JUMP_VELOCITY
 
-	var animationState = _animationState(direction);
+	var animationState = _animationState(direction, slidingState.isActive);
 	$AnimationPlayer.play(animationState)
 	var oldVelocity = Vector2(velocity)
 	move_and_slide()
@@ -48,6 +56,16 @@ func refielFuel(delta: float) -> void:
 			curentJumpFuel += 1000 * delta
 		elif curentJumpFuel > TOTAL_JUMP_FUEL:
 			curentJumpFuel = TOTAL_JUMP_FUEL
+
+func sliding(playerDirection, delta):
+	if abs(velocity.x) > SPEED:
+		var modifier = 600;
+		if playerDirection == -slidingState.direction :
+			modifier = 1200;
+		velocity.x += (slidingState.puissance / abs(velocity.x)) * modifier * delta * - slidingState.direction 
+
+	else:
+		slidingState.isActive = false;
 
 func bounceManagement(colliderName: String, oldVelocity: Vector2) -> void:
 	if colliderName == "Wall":
@@ -74,7 +92,7 @@ func movingOnTheFloor(direction: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-func _animationState(direction: float) -> String:
+func _animationState(direction: float, isSliding: bool) -> String:
 	if not is_on_floor():
 		return "jump"
 	if direction: 

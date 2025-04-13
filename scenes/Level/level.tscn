@@ -37,7 +37,7 @@ scale = Vector2(0.5, 0.5)
 collision_layer = 3
 
 [node name="NewPlayer" parent="." instance=ExtResource("3_ggv0q")]
-position = Vector2(1235, 588)
+position = Vector2(1680, 591)
 scale = Vector2(0.5, 0.5)
 collision_layer = 2
 collision_mask = 3
@@ -55,6 +55,6 @@ position = Vector2(1820, 356)
 shape = SubResource("RectangleShape2D_vlvsn")
 
 [node name="EnemyCRS" parent="." instance=ExtResource("3_vlvsn")]
-position = Vector2(1548, 587)
+position = Vector2(1771, 588)
 scale = Vector2(0.5, 0.5)
 collision_mask = 3
