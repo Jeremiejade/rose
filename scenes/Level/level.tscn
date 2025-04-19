@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://ue6otj6bwght"]
+[gd_scene load_steps=9 format=3 uid="uid://ue6otj6bwght"]
 
 [ext_resource type="Texture2D" uid="uid://h5iq4it5kewa" path="res://assets/level_1/ground.jpg" id="1_4tl78"]
+[ext_resource type="Script" uid="uid://bq5igbljfr1id" path="res://scenes/Level/level.gd" id="1_65260"]
 [ext_resource type="PackedScene" uid="uid://dymyjfjvgoyg5" path="res://scenes/NewPlayer/new_player.tscn" id="3_ggv0q"]
 [ext_resource type="PackedScene" uid="uid://b5jwjmycjhg30" path="res://scenes/enemies/enemy_crs.tscn" id="3_vlvsn"]
 [ext_resource type="PackedScene" uid="uid://k43skcolxlck" path="res://scenes/rose/rose.tscn" id="4_v753x"]
@@ -14,6 +15,7 @@ distance = -621.0
 size = Vector2(36, 705)
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_65260")
 
 [node name="Ground" type="StaticBody2D" parent="."]
 collision_layer = 7
@@ -38,7 +40,7 @@ collision_layer = 3
 
 [node name="NewPlayer" parent="." instance=ExtResource("3_ggv0q")]
 position = Vector2(1680, 591)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.6, 0.6)
 collision_layer = 2
 collision_mask = 3
 
@@ -58,3 +60,14 @@ shape = SubResource("RectangleShape2D_vlvsn")
 position = Vector2(1771, 588)
 scale = Vector2(0.5, 0.5)
 collision_mask = 3
+
+[node name="SpawnerLeft" type="Node2D" parent="."]
+position = Vector2(35, 590)
+
+[node name="SpawneryRight" type="Node2D" parent="."]
+position = Vector2(1773, 590)
+
+[node name="SpawnerTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="SpawnerTimer" to="." method="_on_spawner_timer_timeout"]
