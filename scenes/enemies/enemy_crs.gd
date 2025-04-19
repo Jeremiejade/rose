@@ -7,6 +7,9 @@ var state = 'walk'
 var blood;
 const BLOOD_BULLET = preload("res://scenes/effect/blood_impact_bullet.tscn");
 
+func _ready() -> void:
+	$body.scale.x  = -direction
+	print('alo')
 
 func _physics_process(delta: float) -> void:
 	if health <= 0:
@@ -35,7 +38,6 @@ func handleAnimation() -> void:
 func onDieAnnimationEnd():
 	$AnimationPlayer.stop(true)
 	blood.stopEmit()
-	print("0")
 	await get_tree().create_timer(10).timeout
 	queue_free()
 
@@ -58,7 +60,7 @@ func addBlood(parent: Sprite2D, attack):
 	blood = BLOOD_BULLET.instantiate()
 	parent.add_child(blood)
 	blood.rotation = attack.rotation
-	blood.global_position = attack.position;
+	blood.global_position = attack.position
 	pass
 
 func isEnnemy():

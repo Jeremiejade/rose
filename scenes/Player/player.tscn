@@ -917,47 +917,49 @@ shape = SubResource("RectangleShape2D_cd1yq")
 [node name="Body" type="Node2D" parent="."]
 
 [node name="CuisseG" type="Polygon2D" parent="Body"]
-position = Vector2(-114.608, -15.7896)
-rotation = -0.0305689
+position = Vector2(-114.614, -15.7683)
+rotation = -0.0308617
 scale = Vector2(1, 1)
 texture = ExtResource("2_35sv3")
 polygon = PackedVector2Array(20.6272, 42.0492, 20.2935, 31.5018, 22.9637, 27.7634, 75.5676, 4.332, 86.5823, 29.4991, 34.8463, 51.1948, 27.1026, 48.8584)
 uv = PackedVector2Array(20.6272, 42.0492, 20.2935, 31.5018, 22.9637, 27.7634, 75.5676, 4.332, 86.5823, 29.4991, 34.8463, 51.1948, 27.1026, 48.8584)
 
 [node name="JambeG" type="Polygon2D" parent="Body"]
-position = Vector2(-250.604, 22.0831)
-rotation = -0.0464369
-scale = Vector2(0.999999, 0.999999)
+position = Vector2(-250.599, 22.0929)
+rotation = -0.0464288
+scale = Vector2(1, 1)
 texture = ExtResource("2_35sv3")
 polygon = PackedVector2Array(167.833, 0.472408, 163.111, 7.24093, 165, 32.7409, 185.62, 84.8428, 212.694, 74.2965, 192.074, 21.7224, 175.546, 2.67611)
 uv = PackedVector2Array(167.833, 0.472408, 163.111, 7.24093, 165, 32.7409, 185.62, 84.8428, 212.694, 74.2965, 192.074, 21.7224, 175.546, 2.67611)
 
 [node name="PiedG" type="Polygon2D" parent="Body"]
-position = Vector2(-82.4707, 7.00005)
-scale = Vector2(0.999999, 0.999999)
+position = Vector2(-82.4808, 7.01694)
+rotation = -0.000190333
+scale = Vector2(1, 1)
 texture = ExtResource("2_35sv3")
 polygon = PackedVector2Array(27.6693, 53.9342, 45.3823, 58.6957, 54.1436, 72.4091, 53.5722, 94.8837, 1.95675, 94.6932, 2.33768, 72.4091, 13.575, 58.1243)
 uv = PackedVector2Array(27.6693, 53.9342, 45.3823, 58.6957, 54.1436, 72.4091, 53.5722, 94.8837, 1.95675, 94.6932, 2.33768, 72.4091, 13.575, 58.1243)
 
 [node name="CuisseD" type="Polygon2D" parent="Body"]
-position = Vector2(-62.4957, -14.1701)
-rotation = -0.0271299
+position = Vector2(-61.8744, -17.5976)
+rotation = 0.00576565
 scale = Vector2(0.999918, 0.999918)
 texture = ExtResource("2_35sv3")
 polygon = PackedVector2Array(155.713, 43.2872, 156.185, 27.3891, 101.092, 3.14833, 89.1294, 29.7502, 139.815, 53.3613, 150.991, 49.7409)
 uv = PackedVector2Array(155.713, 43.2872, 156.185, 27.3891, 101.092, 3.14833, 89.1294, 29.7502, 139.815, 53.3613, 150.991, 49.7409)
 
 [node name="JambeD" type="Polygon2D" parent="Body"]
-position = Vector2(-127.403, -58.2779)
-rotation = -0.0472261
-scale = Vector2(0.99981, 0.99981)
+position = Vector2(-128.098, -56.5857)
+rotation = -0.0491597
+scale = Vector2(0.999813, 0.999813)
 texture = ExtResource("2_35sv3")
 polygon = PackedVector2Array(160.592, 155.046, 185.62, 98.065, 201.518, 81.6946, 211.592, 85.6298, 211.907, 111.287, 190.342, 166.222)
 uv = PackedVector2Array(160.592, 155.046, 185.62, 98.065, 201.518, 81.6946, 211.592, 85.6298, 211.907, 111.287, 190.342, 166.222)
 
 [node name="PiedD" type="Polygon2D" parent="Body"]
-position = Vector2(33.0371, 7.02229)
-scale = Vector2(0.999714, 0.999714)
+position = Vector2(30.9112, 8.9743)
+rotation = -0.0219919
+scale = Vector2(0.999718, 0.999718)
 texture = ExtResource("2_35sv3")
 polygon = PackedVector2Array(27.6693, 53.9342, 45.3823, 58.6957, 54.1436, 72.4091, 53.5722, 94.8837, 1.95675, 94.6932, 2.33768, 72.4091, 13.575, 58.1243)
 uv = PackedVector2Array(27.6693, 53.9342, 45.3823, 58.6957, 54.1436, 72.4091, 53.5722, 94.8837, 1.95675, 94.6932, 2.33768, 72.4091, 13.575, 58.1243)
@@ -1070,5 +1072,5 @@ position = Vector2(60, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_cvvgx")
+&"": SubResource("AnimationLibrary_cvvgx")
 }
