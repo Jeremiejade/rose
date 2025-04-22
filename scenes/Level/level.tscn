@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://ue6otj6bwght"]
+[gd_scene load_steps=8 format=3 uid="uid://ue6otj6bwght"]
 
 [ext_resource type="Texture2D" uid="uid://h5iq4it5kewa" path="res://assets/level_1/ground.jpg" id="1_4tl78"]
 [ext_resource type="Script" uid="uid://bq5igbljfr1id" path="res://scenes/Level/level.gd" id="1_65260"]
 [ext_resource type="PackedScene" uid="uid://dymyjfjvgoyg5" path="res://scenes/NewPlayer/new_player.tscn" id="3_ggv0q"]
-[ext_resource type="PackedScene" uid="uid://b5jwjmycjhg30" path="res://scenes/enemies/enemy_crs.tscn" id="3_vlvsn"]
 [ext_resource type="PackedScene" uid="uid://k43skcolxlck" path="res://scenes/rose/rose.tscn" id="4_v753x"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_b5p4l"]
@@ -42,7 +41,7 @@ collision_layer = 3
 position = Vector2(1680, 591)
 scale = Vector2(0.6, 0.6)
 collision_layer = 2
-collision_mask = 3
+collision_mask = 11
 
 [node name="Wall" type="StaticBody2D" parent="."]
 collision_layer = 3
@@ -55,11 +54,6 @@ shape = SubResource("RectangleShape2D_vlvsn")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Wall"]
 position = Vector2(1820, 356)
 shape = SubResource("RectangleShape2D_vlvsn")
-
-[node name="EnemyCRS" parent="." instance=ExtResource("3_vlvsn")]
-position = Vector2(1771, 588)
-scale = Vector2(0.5, 0.5)
-collision_mask = 3
 
 [node name="SpawnerLeft" type="Node2D" parent="."]
 position = Vector2(35, 590)
