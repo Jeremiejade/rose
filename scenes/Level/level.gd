@@ -4,6 +4,8 @@ const CRS = preload("res://scenes/enemies/enemy_crs.tscn");
 var rng = RandomNumberGenerator.new();
 var random = 1;
 
+var ennemyKillCount = 0;
+
 
 	
 func addCrs(parent: Node2D):
@@ -13,9 +15,13 @@ func addCrs(parent: Node2D):
 	crs.position = positionAndDirection[1]
 	crs.scale.x = 0.5
 	crs.scale.y = 0.5
+	crs.connect('on_death', enemieKillCounter)
 	
 	parent.add_child(crs)
 
+func enemieKillCounter():
+	ennemyKillCount += 1
+	$SkillCountText2.text = str('[color=black][b][font_size=30]',ennemyKillCount,'[/font_size][/b][/color]' )
 
 func getSpawnerPosition():
 	random = rng.randf_range(-1, 1)

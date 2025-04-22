@@ -2,8 +2,12 @@ extends CharacterBody2D
 
 var SPEED = 100
 var state = 'walk'
+var deathHasEmit = false;
 @export var health = 10;
 @export var direction = -1
+
+signal on_death
+
 var blood;
 const BLOOD_BULLET = preload("res://scenes/effect/blood_impact_bullet.tscn");
 
@@ -14,6 +18,9 @@ func _physics_process(delta: float) -> void:
 	if health <= 0:
 		state = "dead"
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+		if !deathHasEmit :
+			on_death.emit()
+			deathHasEmit = true
 	
 	if state != "dead" :
 		if not is_on_floor():
