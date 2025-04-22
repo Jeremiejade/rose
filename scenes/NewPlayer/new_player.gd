@@ -26,7 +26,8 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		
-	$sprites/FrontLeg/FuelGauge.value = (curentJumpFuel * 100 ) / TOTAL_JUMP_FUEL
+	var threshold = round(curentJumpFuel * 100 ) / TOTAL_JUMP_FUEL
+	$sprites/FrontLeg/FuelGauge.value = round(threshold)
 	refielFuel(delta)
 
 	var direction = Input.get_axis("move_left", "move_right")
