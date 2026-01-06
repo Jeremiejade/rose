@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://13ap584344ym"]
 
 [ext_resource type="Texture2D" uid="uid://tdc55yeg3w2" path="res://assets/newPlayer/gun.png" id="1_mghkf"]
-[ext_resource type="Script" uid="uid://dftqo2fwymryo" path="res://gun.gd" id="2_tvmhq"]
+[ext_resource type="Script" uid="uid://dftqo2fwymryo" path="res://scenes/BulletGun/gun.gd" id="2_tvmhq"]
 
 [node name="Gun" type="Sprite2D"]
 texture = ExtResource("1_mghkf")

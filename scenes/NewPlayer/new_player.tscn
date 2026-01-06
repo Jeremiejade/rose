@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dymyjfjvgoyg5"]
+[gd_scene load_steps=18 format=3 uid="uid://dymyjfjvgoyg5"]
 
 [ext_resource type="Texture2D" uid="uid://cjfkbhvehx4x" path="res://assets/newPlayer/back_leg.png" id="1_8aldm"]
 [ext_resource type="Script" uid="uid://d5t03gg8w4aj" path="res://scenes/NewPlayer/new_player.gd" id="1_dq5k8"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://4jmc02h0rhj5" path="res://assets/newPlayer/front_leg.png" id="6_7wfrq"]
 [ext_resource type="PackedScene" uid="uid://ldk11y02bjpx" path="res://scenes/NewPlayer/power_fuel.tscn" id="7_d3wdy"]
 [ext_resource type="Texture2D" uid="uid://bovydj48g55ro" path="res://assets/newPlayer/fuel-gauge.png" id="8_i1n5h"]
+[ext_resource type="Script" uid="uid://bcn3h40a6b2o5" path="res://scenes/z_hurt_box.gd" id="10_j05um"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3864k"]
 radius = 59.0
@@ -234,6 +235,10 @@ _data = {
 &"walk": SubResource("Animation_14177")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l233m"]
+radius = 63.0
+height = 148.0
+
 [node name="NewPlayer" type="CharacterBody2D"]
 script = ExtResource("1_dq5k8")
 metadata/_edit_horizontal_guides_ = [-10.0, 70.0]
@@ -293,3 +298,13 @@ shape = SubResource("CapsuleShape2D_3864k")
 libraries = {
 &"": SubResource("AnimationLibrary_ut3gk")
 }
+
+[node name="ZHurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("10_j05um")
+metadata/_custom_type_script = "uid://bcn3h40a6b2o5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZHurtBox"]
+shape = SubResource("CapsuleShape2D_l233m")
+debug_color = Color(0.7476307, 0.46180922, 0, 0.41960785)

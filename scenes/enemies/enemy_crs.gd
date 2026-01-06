@@ -13,6 +13,7 @@ const BLOOD_BULLET = preload("res://scenes/effect/blood_impact_bullet.tscn");
 
 func _ready() -> void:
 	$body.scale.x  = -direction
+	$body/CrsFrontArm/ZHitBox.direction = direction
 
 func _physics_process(delta: float) -> void:
 	if health <= 0:
@@ -76,13 +77,13 @@ func addBlood(parent: Sprite2D, attack):
 func isEnnemy():
 	return true;
 
-func _on_wepon_body_entered(body: Node2D) -> void:
-	if body.name == 'rose' || body.name == 'NewPlayer':
-		body.addAttack({
-				"id": self.get_instance_id(),
-				"damage": 10,
-				"direction": direction,
-			})
+#func _on_wepon_body_entered(body: Node2D) -> void:
+#	if body.name == 'rose' || body.name == 'NewPlayer':
+#		body.addAttack({
+#				"id": self.get_instance_id(),
+#				"damage": 10,
+#				"direction": direction,
+#			})
 
 func _on_vision_body_entered(body: Node2D) -> void:
 	if body.name == 'rose' and state != 'attack':

@@ -1,7 +1,6 @@
 extends StaticBody2D
 
 var ATTACKS = []
-var ATTACK_IDS = []
 var pumpCurvePoints
 var pump
 
@@ -11,7 +10,6 @@ const ROOT = preload("res://scenes/rose/root.tscn");
 
 func _physics_process(_delta):
 	for attack in ATTACKS:
-		ATTACK_IDS = ATTACK_IDS.filter(func(id): return id != attack.id)
 		life -= attack.damage
 	ATTACKS = []
 	handleFelure()
@@ -22,12 +20,8 @@ func pumpBlood(targetPosition: Vector2, target: CharacterBody2D) -> void:
 	root.position = $rootSpawnerTarget.position
 	self.add_child(root)
 
-func addAttack(attack):
-	var alreadyAttacking = ATTACK_IDS.find(attack.id)
-
-	if alreadyAttacking == -1:
-		ATTACK_IDS.push_front(attack.id)
-		ATTACKS.push_front(attack)
+func take_damage(attack):
+	ATTACKS.push_front(attack)
 
 func handleFelure():
 	if life > 80 :

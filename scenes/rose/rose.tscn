@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://k43skcolxlck"]
+[gd_scene load_steps=15 format=3 uid="uid://k43skcolxlck"]
 
 [ext_resource type="Texture2D" uid="uid://dtvehyravo3vp" path="res://assets/rose/rose.png" id="1_hydmc"]
 [ext_resource type="Script" uid="uid://bjtonm1m3pb7y" path="res://scenes/rose/rose.gd" id="1_tlg6t"]
 [ext_resource type="Texture2D" uid="uid://ce71vajg7j5dk" path="res://assets/rose/texture_glass.png" id="2_us4hs"]
 [ext_resource type="Texture2D" uid="uid://eu8n1gs1pg4u" path="res://assets/rose/felure.png" id="3_63b50"]
 [ext_resource type="Texture2D" uid="uid://dwl0t0heca5j5" path="res://assets/rose/dead_rose.png" id="4_yceic"]
+[ext_resource type="Script" uid="uid://bcn3h40a6b2o5" path="res://scenes/z_hurt_box.gd" id="6_6ajo2"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_us4hs"]
 particle_flag_disable_z = true
@@ -64,6 +65,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ysnrn"]
+radius = 56.0
+height = 150.0
+
 [node name="rose" type="StaticBody2D"]
 script = ExtResource("1_tlg6t")
 metadata/_edit_horizontal_guides_ = [65.0]
@@ -106,3 +111,14 @@ texture = ExtResource("4_yceic")
 
 [node name="rootSpawnerTarget" type="Node2D" parent="."]
 position = Vector2(0, 78)
+
+[node name="ZHurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("6_6ajo2")
+metadata/_custom_type_script = "uid://bcn3h40a6b2o5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZHurtBox"]
+position = Vector2(0, -5)
+shape = SubResource("CapsuleShape2D_ysnrn")
+debug_color = Color(0.59386826, 0.54656416, 1.92523e-07, 0.41960785)

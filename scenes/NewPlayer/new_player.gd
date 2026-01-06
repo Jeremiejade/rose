@@ -93,12 +93,12 @@ func movingOnTheFloor(direction: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-func _animationState(direction: float, isSliding: bool) -> String:
+func _animationState(direction: float, _isSliding: bool) -> String:
 	if not is_on_floor():
 		return "jump"
 	if direction: 
 		return "walk"
 	return "idle"
 
-func addAttack(attack) :
+func take_damage(attack) :
 	ATTACKS.push_front(attack)
