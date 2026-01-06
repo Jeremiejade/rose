@@ -7,7 +7,6 @@ var random = 1;
 var ennemyKillCount = 0;
 
 
-	
 func addCrs(parent: Node2D):
 	var crs = CRS.instantiate()
 	var positionAndDirection = getSpawnerPosition()
@@ -16,10 +15,12 @@ func addCrs(parent: Node2D):
 	crs.scale.x = 0.5
 	crs.scale.y = 0.5
 	crs.connect('on_death', enemieKillCounter)
+	crs.connect('on_death', $rose.pumpBlood)
+	
 	
 	parent.add_child(crs)
 
-func enemieKillCounter():
+func enemieKillCounter(_pos, _tar):
 	ennemyKillCount += 1
 	$SkillCountText2.text = str('[color=black][b][font_size=30]',ennemyKillCount,'[/font_size][/b][/color]' )
 

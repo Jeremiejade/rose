@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2yx0lvw2ykdb"]
+
+[ext_resource type="Script" uid="uid://e5umfcawd3l4" path="res://scenes/rose/root.gd" id="1_1i827"]
+
+[sub_resource type="Curve" id="Curve_1i827"]
+_data = [Vector2(0, 0.299276), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_pnwrn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Line2D:default_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1i827"]
+resource_name = "eating"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Line2D:default_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.21568628, 0.078431375, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"unGrow"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wu47e"]
+_data = {
+&"RESET": SubResource("Animation_pnwrn"),
+&"eating": SubResource("Animation_1i827")
+}
+
+[node name="Root" type="Node2D"]
+script = ExtResource("1_1i827")
+
+[node name="Line2D" type="Line2D" parent="."]
+width_curve = SubResource("Curve_1i827")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_wu47e")
+}

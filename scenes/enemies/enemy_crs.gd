@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 		state = "dead"
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		if !deathHasEmit :
-			on_death.emit()
+			on_death.emit(self.global_position, self)
 			deathHasEmit = true
 	
 	if state != "dead" :
@@ -41,11 +41,13 @@ func handleAnimation() -> void:
 	elif state == 'dead' and $AnimationPlayer.is_playing():
 		$AnimationPlayer.play("death")
 
-func onDieAnnimationEnd():
+func onDieAnimationEnd():
 	$AnimationPlayer.stop(true)
 	blood.stopEmit()
-	await get_tree().create_timer(10).timeout
+
+func eat():
 	queue_free()
+
 
 func addAttack(attack):
 	health -= attack.degat

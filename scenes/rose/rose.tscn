@@ -103,3 +103,6 @@ frame_progress = 0.0755674
 visible = false
 position = Vector2(0, 27)
 texture = ExtResource("4_yceic")
+
+[node name="rootSpawnerTarget" type="Node2D" parent="."]
+position = Vector2(0, 78)

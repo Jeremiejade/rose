@@ -2,7 +2,12 @@ extends StaticBody2D
 
 var ATTACKS = []
 var ATTACK_IDS = []
+var pumpCurvePoints
+var pump
+
 @export var life: int = 100
+const ROOT = preload("res://scenes/rose/root.tscn");
+
 
 func _physics_process(_delta):
 	for attack in ATTACKS:
@@ -10,6 +15,12 @@ func _physics_process(_delta):
 		life -= attack.damage
 	ATTACKS = []
 	handleFelure()
+	
+func pumpBlood(targetPosition: Vector2, target: CharacterBody2D) -> void:
+	var root = ROOT.instantiate()
+	root.setCurvePoints(targetPosition.x - global_position.x, target)
+	root.position = $rootSpawnerTarget.position
+	self.add_child(root)
 
 func addAttack(attack):
 	var alreadyAttacking = ATTACK_IDS.find(attack.id)
