@@ -21,7 +21,8 @@ func pumpBlood(targetPosition: Vector2, target: CharacterBody2D) -> void:
 	self.add_child(root)
 
 func take_damage(attack):
-	ATTACKS.push_front(attack)
+	if(attack.origin != "player"):
+		ATTACKS.push_front(attack)
 
 func handleFelure():
 	if life > 80 :

@@ -4,10 +4,19 @@ func _ready() -> void:
 	area_entered.connect(_on_area_entered)
 
 
-func _on_area_entered(hit_box: ZHitBox) -> void:
-	print(hit_box)
-	if hit_box != null and owner.has_method("take_damage"):
+func _on_area_entered(hit_box: Area2D) -> void:
+	if hit_box == null: pass
+	if !(hit_box is ZHitBox): return
+	if owner.has_method("take_damage"):
 		owner.take_damage({
 			"damage": hit_box.damage,
-			"direction": hit_box.direction
+			"direction": hit_box.direction,
+			"rotation": hit_box.global_rotation,
+			"position": hit_box.global_position,
+			"type": hit_box.type,
+			"origin": hit_box.origin
 		})
+		#todo ajout
+	
+		if hit_box.ownerNode and hit_box.ownerNode.has_method("on_making_damage"):
+			hit_box.ownerNode.on_making_damage()

@@ -41,7 +41,7 @@ func _physics_process(delta: float) -> void:
 			
 	if Input.is_action_just_pressed("jump") and curentJumpFuel > 0 and is_on_floor() and rotation == 0:
 		velocity.y = JUMP_VELOCITY
-
+		
 	var animationState = _animationState(direction, slidingState.isActive);
 	$AnimationPlayer.play(animationState)
 	var oldVelocity = Vector2(velocity)
@@ -101,4 +101,5 @@ func _animationState(direction: float, _isSliding: bool) -> String:
 	return "idle"
 
 func take_damage(attack) :
-	ATTACKS.push_front(attack)
+	if(attack.origin != "player"):
+		ATTACKS.push_front(attack)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ue6otj6bwght"]
 
-[ext_resource type="Texture2D" uid="uid://h5iq4it5kewa" path="res://assets/level_1/ground.jpg" id="1_4tl78"]
+[ext_resource type="Texture2D" uid="uid://h5iq4it5kewa" path="res://scenes/assets/level_1/ground.jpg" id="1_4tl78"]
 [ext_resource type="Script" uid="uid://bq5igbljfr1id" path="res://scenes/Level/level.gd" id="1_65260"]
 [ext_resource type="PackedScene" uid="uid://dymyjfjvgoyg5" path="res://scenes/NewPlayer/new_player.tscn" id="3_ggv0q"]
 [ext_resource type="PackedScene" uid="uid://k43skcolxlck" path="res://scenes/rose/rose.tscn" id="4_v753x"]
@@ -36,12 +36,12 @@ region_rect = Rect2(0, 0, 1800, 31.54)
 position = Vector2(916, 603)
 scale = Vector2(0.5, 0.5)
 collision_layer = 3
+collision_mask = 0
 
 [node name="NewPlayer" parent="." instance=ExtResource("3_ggv0q")]
-position = Vector2(1680, 591)
+position = Vector2(1602.0001, 558)
 scale = Vector2(0.6, 0.6)
-collision_layer = 2
-collision_mask = 11
+collision_mask = 7
 
 [node name="Wall" type="StaticBody2D" parent="."]
 collision_layer = 3
