@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b5jwjmycjhg30"]
+[gd_scene load_steps=19 format=3 uid="uid://b5jwjmycjhg30"]
 
 [ext_resource type="Texture2D" uid="uid://jioc0jniatva" path="res://assets/enemie/crs_back_arm.png" id="1_brrmv"]
 [ext_resource type="Script" uid="uid://ckvrm8ln7gart" path="res://scenes/enemies/enemy_crs.gd" id="1_g0u10"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://du63np2ilbyml" path="res://assets/enemie/crs_head.png" id="5_awp8h"]
 [ext_resource type="Texture2D" uid="uid://dvf8wotam60yr" path="res://assets/enemie/crs_front_arm.png" id="6_12ic4"]
 [ext_resource type="Script" uid="uid://bbvmyj2cykdsp" path="res://scenes/z_hit_box.gd" id="8_f708u"]
+[ext_resource type="Script" uid="uid://bcn3h40a6b2o5" path="res://scenes/z_hurt_box.gd" id="9_gbvbm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gbvbm"]
 radius = 8.021391
@@ -709,6 +710,10 @@ _data = {
 &"walk": SubResource("Animation_sh54r")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_awp8h"]
+radius = 45.0
+height = 142.0
+
 [node name="EnemyCRS" type="CharacterBody2D"]
 collision_layer = 8
 script = ExtResource("1_g0u10")
@@ -757,6 +762,7 @@ position = Vector2(-46.09089, 34.58413)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("8_f708u")
+origin = "CRS"
 metadata/_custom_type_script = "uid://bbvmyj2cykdsp"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="body/CrsFrontArm/ZHitBox"]
@@ -782,6 +788,15 @@ shape = SubResource("CapsuleShape2D_p22s8")
 libraries = {
 &"": SubResource("AnimationLibrary_w12oc")
 }
+
+[node name="ZHurtBox" type="Area2D" parent="."]
+script = ExtResource("9_gbvbm")
+metadata/_custom_type_script = "uid://bcn3h40a6b2o5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZHurtBox"]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_awp8h")
+debug_color = Color(0.7030465, 0.48935717, 0.095277764, 0.41960785)
 
 [connection signal="body_entered" from="body/Vision" to="." method="_on_vision_body_entered"]
 [connection signal="body_exited" from="body/Vision" to="." method="_on_vision_body_exited"]

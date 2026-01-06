@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://2lq1ivwpnygy"]
+[gd_scene load_steps=11 format=3 uid="uid://2lq1ivwpnygy"]
 
 [ext_resource type="Script" uid="uid://ck8rxa23m3bk" path="res://scenes/BulletGun/bullet_gun.gd" id="1_yaof3"]
 [ext_resource type="Texture2D" uid="uid://ce4p2j51fedu2" path="res://assets/bullets/bullet.png" id="2_71s1i"]
@@ -7,9 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dcajxdg04i81l" path="res://assets/bullets/bullet_dust_2.png" id="5_gvmsy"]
 [ext_resource type="Texture2D" uid="uid://67x4fch11ayt" path="res://assets/bullets/bullet_dust_3.png" id="6_id0gm"]
 [ext_resource type="Texture2D" uid="uid://cfxss24q1vl4p" path="res://assets/bullets/bullet_dust_4.png" id="7_56irk"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yaof3"]
-size = Vector2(19, 10)
+[ext_resource type="Script" uid="uid://bbvmyj2cykdsp" path="res://scenes/z_hit_box.gd" id="8_n5xxk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7t7fv"]
 animations = [{
@@ -34,9 +32,10 @@ animations = [{
 "speed": 20.0
 }]
 
-[node name="Bullet_Gun" type="Area2D"]
-collision_layer = 0
-collision_mask = 9
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yaof3"]
+size = Vector2(19, 10)
+
+[node name="Bullet_Gun" type="Node2D"]
 script = ExtResource("1_yaof3")
 
 [node name="Bullet" type="Sprite2D" parent="."]
@@ -45,10 +44,6 @@ texture = ExtResource("2_71s1i")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 scale = Vector2(4.4, 4.4)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
-shape = SubResource("RectangleShape2D_yaof3")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
 sprite_frames = SubResource("SpriteFrames_7t7fv")
@@ -56,6 +51,16 @@ animation = &"boom"
 frame = 4
 frame_progress = 1.0
 
-[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[node name="ZHitBox" type="Area2D" parent="." node_paths=PackedStringArray("collisionShape", "ownerNode")]
+script = ExtResource("8_n5xxk")
+type = "bullet"
+collisionShape = NodePath("CollisionShape2D")
+ownerNode = NodePath("..")
+metadata/_custom_type_script = "uid://bbvmyj2cykdsp"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZHitBox"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_yaof3")
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

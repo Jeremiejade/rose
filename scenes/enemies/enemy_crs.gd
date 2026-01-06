@@ -17,6 +17,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if health <= 0:
+		if state != "dead":
+			_disable_collisions_shape()
 		state = "dead"
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		if !deathHasEmit :
@@ -44,14 +46,16 @@ func handleAnimation() -> void:
 
 func onDieAnimationEnd():
 	$AnimationPlayer.stop(true)
-	blood.stopEmit()
+	if blood: blood.stopEmit()
 
 func eat():
 	queue_free()
 
 
-func addAttack(attack):
-	health -= attack.degat
+func take_damage(attack):
+	if attack.type != "player":
+		pass
+	health -= attack.damage
 	if attack.type == "bullet":
 		var imapctPosition = attack.position.y;
 		var headPostion = $body/CrsHead/headBottom.global_position.y
@@ -72,18 +76,12 @@ func addBlood(parent: Sprite2D, attack):
 	blood.scale.x  = -direction
 	
 	blood.global_position = attack.position
-	pass
 
-func isEnnemy():
-	return true;
-
-#func _on_wepon_body_entered(body: Node2D) -> void:
-#	if body.name == 'rose' || body.name == 'NewPlayer':
-#		body.addAttack({
-#				"id": self.get_instance_id(),
-#				"damage": 10,
-#				"direction": direction,
-#			})
+func _disable_collisions_shape():
+	$body/CrsFrontArm/ZHitBox/CollisionShape2D.disabled = true
+	$ZHurtBox/CollisionShape2D.disabled = true
+	$CollisionShape2D.disabled = true
+	$body/Vision/VisionCollisionShape2D2.disabled = true
 
 func _on_vision_body_entered(body: Node2D) -> void:
 	if body.name == 'rose' and state != 'attack':
