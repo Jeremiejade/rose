@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ue6otj6bwght"]
 
-[ext_resource type="Texture2D" uid="uid://h5iq4it5kewa" path="res://scenes/assets/level_1/ground.jpg" id="1_4tl78"]
+[ext_resource type="Texture2D" uid="uid://h5iq4it5kewa" path="res://assets/level_1/ground.jpg" id="1_4tl78"]
 [ext_resource type="Script" uid="uid://bq5igbljfr1id" path="res://scenes/Level/level.gd" id="1_65260"]
 [ext_resource type="PackedScene" uid="uid://dymyjfjvgoyg5" path="res://scenes/NewPlayer/new_player.tscn" id="3_ggv0q"]
 [ext_resource type="PackedScene" uid="uid://k43skcolxlck" path="res://scenes/rose/rose.tscn" id="4_v753x"]
@@ -17,6 +17,7 @@ size = Vector2(36, 705)
 script = ExtResource("1_65260")
 
 [node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(-916, -640)
 collision_layer = 7
 collision_mask = 0
 
@@ -33,17 +34,23 @@ region_enabled = true
 region_rect = Rect2(0, 0, 1800, 31.54)
 
 [node name="rose" parent="." instance=ExtResource("4_v753x")]
-position = Vector2(916, 603)
+position = Vector2(0, -37)
 scale = Vector2(0.5, 0.5)
 collision_layer = 3
 collision_mask = 0
 
 [node name="NewPlayer" parent="." instance=ExtResource("3_ggv0q")]
-position = Vector2(1602.0001, 558)
+position = Vector2(686.0001, -82)
 scale = Vector2(0.6, 0.6)
 collision_mask = 7
 
+[node name="Camera2D" type="Camera2D" parent="NewPlayer"]
+limit_left = -1000
+limit_right = 1000
+limit_bottom = 100
+
 [node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(-916, -640)
 collision_layer = 3
 physics_material_override = SubResource("PhysicsMaterial_676nv")
 
@@ -56,15 +63,17 @@ position = Vector2(1820, 356)
 shape = SubResource("RectangleShape2D_vlvsn")
 
 [node name="SpawnerLeft" type="Node2D" parent="."]
-position = Vector2(35, 590)
+position = Vector2(-881, -50)
 
 [node name="SpawneryRight" type="Node2D" parent="."]
-position = Vector2(1773, 590)
+position = Vector2(857, -50)
 
 [node name="SpawnerTimer" type="Timer" parent="."]
 autostart = true
 
-[node name="SkillCountText" type="RichTextLabel" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SkillCountText" type="RichTextLabel" parent="CanvasLayer"]
 offset_left = 11.0
 offset_top = 25.0
 offset_right = 363.0
@@ -73,7 +82,7 @@ bbcode_enabled = true
 text = "[color=black]Ennemies Kill Count :[/color]"
 scroll_active = false
 
-[node name="SkillCountText2" type="RichTextLabel" parent="."]
+[node name="SkillCountText2" type="RichTextLabel" parent="CanvasLayer"]
 offset_left = 181.0
 offset_top = 15.0
 offset_right = 489.0

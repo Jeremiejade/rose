@@ -22,7 +22,7 @@ func addCrs(parent: Node2D):
 
 func enemieKillCounter(_pos, _tar):
 	ennemyKillCount += 1
-	$SkillCountText2.text = str('[color=black][b][font_size=30]',ennemyKillCount,'[/font_size][/b][/color]' )
+	$CanvasLayer/SkillCountText2.text = str('[color=black][b][font_size=30]',ennemyKillCount,'[/font_size][/b][/color]' )
 
 func getSpawnerPosition():
 	random = rng.randf_range(-1, 1)
