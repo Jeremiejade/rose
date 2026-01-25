@@ -18,8 +18,7 @@ script = ExtResource("1_65260")
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(-916, -640)
-collision_layer = 7
-collision_mask = 0
+collision_mask = 87
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
 position = Vector2(0, 17)
@@ -36,8 +35,8 @@ region_rect = Rect2(0, 0, 1800, 31.54)
 [node name="rose" parent="." instance=ExtResource("4_v753x")]
 position = Vector2(0, -37)
 scale = Vector2(0.5, 0.5)
-collision_layer = 3
-collision_mask = 0
+collision_layer = 128
+collision_mask = 198
 
 [node name="NewPlayer" parent="." instance=ExtResource("3_ggv0q")]
 position = Vector2(686.0001, -82)
@@ -51,7 +50,7 @@ limit_bottom = 100
 
 [node name="Wall" type="StaticBody2D" parent="."]
 position = Vector2(-916, -640)
-collision_layer = 3
+collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_676nv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
@@ -63,10 +62,10 @@ position = Vector2(1820, 356)
 shape = SubResource("RectangleShape2D_vlvsn")
 
 [node name="SpawnerLeft" type="Node2D" parent="."]
-position = Vector2(-881, -50)
+position = Vector2(-883, -136)
 
 [node name="SpawneryRight" type="Node2D" parent="."]
-position = Vector2(857, -50)
+position = Vector2(863, -136)
 
 [node name="SpawnerTimer" type="Timer" parent="."]
 autostart = true

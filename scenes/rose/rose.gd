@@ -1,12 +1,15 @@
-extends StaticBody2D
+class_name Rose extends StaticBody2D
 
 var ATTACKS = []
 var pumpCurvePoints
 var pump
 
 @export var life: int = 100
+
 const ROOT = preload("res://scenes/rose/root.tscn");
 
+func _ready() -> void:
+	gameConfig.rose = self
 
 func _physics_process(_delta):
 	for attack in ATTACKS:

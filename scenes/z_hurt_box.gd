@@ -16,7 +16,5 @@ func _on_area_entered(hit_box: Area2D) -> void:
 			"type": hit_box.type,
 			"origin": hit_box.origin
 		})
-		#todo ajout
-	
-		if hit_box.ownerNode and hit_box.ownerNode.has_method("on_making_damage"):
-			hit_box.ownerNode.on_making_damage()
+	if hit_box.owner and hit_box.owner.has_method("on_making_damage"):
+		hit_box.owner.on_making_damage()

@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://dul1v3h4h5n2y"]
+
+[ext_resource type="Script" uid="uid://b7pjr75wuoevj" path="res://scenes/BulletGun/tank_0_bullet.gd" id="1_c0urp"]
+[ext_resource type="Texture2D" uid="uid://bh52835ifi53e" path="res://assets/enemie/tank_0/tank_0_bullet.png" id="1_inxvq"]
+[ext_resource type="Script" uid="uid://bbvmyj2cykdsp" path="res://scenes/z_hit_box.gd" id="2_c0urp"]
+[ext_resource type="Texture2D" uid="uid://c013f0k33hny4" path="res://assets/bullets/bullet_dust_0.png" id="4_y18k8"]
+[ext_resource type="Texture2D" uid="uid://dvru2t63w82uw" path="res://assets/bullets/bullet_dust_1.png" id="5_fu18t"]
+[ext_resource type="Texture2D" uid="uid://dcajxdg04i81l" path="res://assets/bullets/bullet_dust_2.png" id="6_l5kby"]
+[ext_resource type="Texture2D" uid="uid://67x4fch11ayt" path="res://assets/bullets/bullet_dust_3.png" id="7_sbaqj"]
+[ext_resource type="Texture2D" uid="uid://cfxss24q1vl4p" path="res://assets/bullets/bullet_dust_4.png" id="8_xulla"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c0urp"]
+size = Vector2(14, 11)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hadxt"]
+radius = 4.0
+height = 8.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ld8r5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_y18k8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fu18t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_l5kby")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_sbaqj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_xulla")
+}],
+"loop": false,
+"name": &"boom",
+"speed": 20.0
+}]
+
+[node name="tank_0_bullet" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_c0urp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_c0urp")
+
+[node name="Tank0Bullet" type="Sprite2D" parent="."]
+rotation = 1.5707964
+scale = Vector2(0.093023255, 0.09302327)
+texture = ExtResource("1_inxvq")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="ZHitBox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 137
+script = ExtResource("2_c0urp")
+type = "bullet"
+origin = "tank_0"
+metadata/_custom_type_script = "uid://bbvmyj2cykdsp"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZHitBox"]
+position = Vector2(2, 0)
+shape = SubResource("CapsuleShape2D_hadxt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_ld8r5")
+animation = &"boom"
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

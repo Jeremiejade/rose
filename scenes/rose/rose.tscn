@@ -113,8 +113,8 @@ texture = ExtResource("4_yceic")
 position = Vector2(0, 78)
 
 [node name="ZHurtBox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
+collision_layer = 128
+collision_mask = 64
 script = ExtResource("6_6ajo2")
 metadata/_custom_type_script = "uid://bcn3h40a6b2o5"
 

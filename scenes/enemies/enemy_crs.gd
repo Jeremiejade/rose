@@ -89,13 +89,10 @@ func _disable_collisions_shape():
 	$CollisionShape2D.disabled = true
 	$body/Vision/VisionCollisionShape2D2.disabled = true
 
-func _on_vision_body_entered(body: Node2D) -> void:
-	if body.name == 'rose' and state != 'attack':
-		state = 'attack'
-	if body.name == 'NewPlayer' and state != 'attack':
-		state = 'attack'
+
+func _on_vision_area_entered(_area: Area2D) -> void:
+	state = 'attack'
 
 
-func _on_vision_body_exited(body: Node2D) -> void:
-	if body.name == 'NewPlayer' and state == 'attack':
-		state = 'walk'
+func _on_vision_area_exited(_area: Area2D) -> void:
+	state = 'walk'

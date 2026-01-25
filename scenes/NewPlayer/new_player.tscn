@@ -289,6 +289,8 @@ radius = 63.0
 height = 148.0
 
 [node name="NewPlayer" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_dq5k8")
 metadata/_edit_horizontal_guides_ = [-10.0, 70.0]
 
@@ -349,8 +351,8 @@ libraries = {
 }
 
 [node name="ZHurtBox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
+collision_layer = 8
+collision_mask = 64
 script = ExtResource("10_j05um")
 metadata/_custom_type_script = "uid://bcn3h40a6b2o5"
 
@@ -359,6 +361,8 @@ shape = SubResource("CapsuleShape2D_l233m")
 debug_color = Color(0.7476307, 0.46180922, 0, 0.41960785)
 
 [node name="BodyHitBox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 32
 script = ExtResource("11_l233m")
 type = "playerBody"
 metadata/_custom_type_script = "uid://bbvmyj2cykdsp"
