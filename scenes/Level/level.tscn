@@ -63,10 +63,10 @@ position = Vector2(1820, 356)
 shape = SubResource("RectangleShape2D_vlvsn")
 
 [node name="SpawnerLeft" type="Node2D" parent="."]
-position = Vector2(-881, -50)
+position = Vector2(-883, -136)
 
 [node name="SpawneryRight" type="Node2D" parent="."]
-position = Vector2(857, -50)
+position = Vector2(863, -136)
 
 [node name="SpawnerTimer" type="Timer" parent="."]
 autostart = true

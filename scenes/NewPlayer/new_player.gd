@@ -1,5 +1,4 @@
-extends CharacterBody2D
-
+class_name Player extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -15,13 +14,13 @@ var slidingState = {
 
 var ATTACKS = []
 
+func _ready() -> void:
+	gameConfig.player = self
+
 func _physics_process(delta: float) -> void:
 	for attack in ATTACKS:
-		slidingState.puissance = attack.damage * SPEED / 4
-		velocity.x = slidingState.puissance * attack.direction
-		slidingState.isActive = true
-		slidingState.direction = attack.direction
-		ATTACKS = []
+		damageTakenManager(attack)
+	ATTACKS = []
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -50,6 +49,17 @@ func _physics_process(delta: float) -> void:
 		var collision = get_slide_collision(i)
 		bounceManagement(collision.get_collider().name, oldVelocity)
 	
+func damageTakenManager(attack):
+	slidingState.puissance = attack.damage * SPEED / 4
+	print("attack.origin",attack.origin)
+	if attack.origin == "tankShield":
+		#print("rotaion", attack.rotation)
+		#velocity.x = slidingState.puissance * attack.rotation
+		pass
+	else :
+		velocity.x = slidingState.puissance * attack.direction
+	slidingState.isActive = true
+	slidingState.direction = attack.direction
 
 func refielFuel(delta: float) -> void:
 	if is_on_floor():
@@ -69,6 +79,7 @@ func sliding(playerDirection, delta):
 		slidingState.isActive = false;
 
 func bounceManagement(colliderName: String, oldVelocity: Vector2) -> void:
+
 	if colliderName == "Wall":
 		velocity.x = -(oldVelocity.x/1.5)
 	if colliderName == "Ground":
