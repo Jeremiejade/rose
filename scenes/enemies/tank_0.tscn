@@ -1,10 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://1j77j3miomd2"]
+[gd_scene load_steps=16 format=3 uid="uid://1j77j3miomd2"]
 
 [ext_resource type="Texture2D" uid="uid://cugrse80t6n4l" path="res://assets/enemie/tank_0/tank_0_body.png" id="1_fn0ak"]
 [ext_resource type="Script" uid="uid://ra7lrmm3hnof" path="res://scenes/enemies/tank_0.gd" id="1_o2tsw"]
 [ext_resource type="Texture2D" uid="uid://gt56tye1lpco" path="res://assets/enemie/tank_0/tank_0_shield.png" id="2_o2tsw"]
-[ext_resource type="Script" uid="uid://bbvmyj2cykdsp" path="res://scenes/z_hit_box.gd" id="4_f6lk2"]
+[ext_resource type="Script" uid="uid://b3yiuwqux8rc3" path="res://scenes/shield.gd" id="4_0qsaa"]
 [ext_resource type="Shape2D" uid="uid://woar52dyqj36" path="res://workbench/shape/tank_0_polygon_shape_2d.tres" id="5_0qsaa"]
+[ext_resource type="Script" uid="uid://bcn3h40a6b2o5" path="res://scenes/z_hurt_box.gd" id="6_3atxl"]
+[ext_resource type="Texture2D" uid="uid://c013f0k33hny4" path="res://assets/bullets/bullet_dust_0.png" id="7_c0sks"]
+[ext_resource type="Texture2D" uid="uid://dvru2t63w82uw" path="res://assets/bullets/bullet_dust_1.png" id="8_0bplb"]
+[ext_resource type="Texture2D" uid="uid://dcajxdg04i81l" path="res://assets/bullets/bullet_dust_2.png" id="9_tyubs"]
+[ext_resource type="Texture2D" uid="uid://67x4fch11ayt" path="res://assets/bullets/bullet_dust_3.png" id="10_h44vl"]
+[ext_resource type="Texture2D" uid="uid://cfxss24q1vl4p" path="res://assets/bullets/bullet_dust_4.png" id="11_n76cu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f6lk2"]
 radius = 64.0
@@ -13,7 +19,34 @@ height = 364.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0qsaa"]
 size = Vector2(624, 119)
 
-[node name="Node2D" type="CharacterBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8i3du"]
+radius = 174.0
+height = 536.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_citvo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_c0sks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_0bplb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_tyubs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_h44vl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_n76cu")
+}],
+"loop": false,
+"name": &"boom",
+"speed": 20.0
+}]
+
+[node name="Tank0" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 129
 script = ExtResource("1_o2tsw")
@@ -35,22 +68,17 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_o2tsw")
 offset = Vector2(-516, 0)
 
-[node name="ZHitBox" type="Area2D" parent="Tank0Shield"]
-position = Vector2(524, 406)
-scale = Vector2(2, 2)
-collision_layer = 2
-collision_mask = 0
-script = ExtResource("4_f6lk2")
-origin = "tankShield"
-metadata/_custom_type_script = "uid://bbvmyj2cykdsp"
+[node name="ShieldHurtBox" type="Area2D" parent="Tank0Shield"]
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("4_0qsaa")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tank0Shield/ZHitBox"]
-position = Vector2(-756, -206)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tank0Shield/ShieldHurtBox"]
+position = Vector2(-988, -6)
+scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_f6lk2")
 
 [node name="center" type="Node2D" parent="Tank0Shield"]
-
-[node name="Shield" type="Node2D" parent="."]
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
 position = Vector2(-3, -48)
@@ -59,3 +87,23 @@ shape = ExtResource("5_0qsaa")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -59.5)
 shape = SubResource("RectangleShape2D_0qsaa")
+
+[node name="ZHurtBox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("6_3atxl")
+metadata/_custom_type_script = "uid://bcn3h40a6b2o5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZHurtBox"]
+position = Vector2(6, -179)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8i3du")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-29, -150)
+scale = Vector2(28.863636, 28.863636)
+sprite_frames = SubResource("SpriteFrames_citvo")
+animation = &"boom"
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

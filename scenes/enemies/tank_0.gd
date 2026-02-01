@@ -11,11 +11,16 @@ var isShooting := false
 
 const BULLET_GUN = preload("res://scenes/BulletGun/tank_0_bullet.tscn")
 
+signal on_death
+
 func _ready() -> void:
 	$Body.scale.x  = -direction * $Body.scale.x
 
 
 func _physics_process(delta: float) -> void:
+	if health <= 0:
+		state = "dead"
+
 	if state != "dead" :
 		if not is_on_floor():
 			velocity += get_gravity() * delta
@@ -24,7 +29,8 @@ func _physics_process(delta: float) -> void:
 		else :
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 		if state == 'attack' and !isShooting:
-			attack()
+			shoot()
+	handleAnimation()
 	canAttack()
 	handlePositionShield()
 	move_and_slide()
@@ -39,7 +45,12 @@ func handlePositionShield():
 		else:  angle = 0
 	shield.rotation = angle
 	
-func attack():
+func handleAnimation():
+	if state == 'dead':
+		$AnimatedSprite2D.play("boom")
+		$AnimatedSprite2D.visible = true
+	
+func shoot():
 	isShooting = true
 	var bullet_instance = BULLET_GUN.instantiate()
 
@@ -55,3 +66,11 @@ func canAttack() -> void:
 
 	if abs(front.global_position).x < 250:
 		state = 'attack'
+
+func take_damage(attack):
+	health -= attack.damage
+		
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	on_death.emit(self.global_position, self)
+	queue_free()

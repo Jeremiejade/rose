@@ -30,6 +30,7 @@ func addTank0(parent: Node2D):
 	if SPAWN_ENEMIES_COUNT.tank == LIMIT_SPAWN.tank and LIMIT_SPAWN.tank != -1: return
 	var tank = TANK_0.instantiate()
 	addEnnemy(parent, tank)
+	tank.connect('on_death', enemieKillCounter)
 	SPAWN_ENEMIES_COUNT.tank += 1
 	
 func addEnnemy(parent: Node2D, enemy: Node2D):
