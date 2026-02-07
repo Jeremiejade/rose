@@ -9,7 +9,7 @@ var ennemyKillCount = 0;
 
 var LIMIT_SPAWN = {
 	"tank": 1,
-	"crs": 0
+	"crs": 100
 }
 var SPAWN_ENEMIES_COUNT = {
 	"tank": 0,
@@ -20,25 +20,26 @@ var SPAWN_ENEMIES_COUNT = {
 func addCrs(parent: Node2D):
 	if SPAWN_ENEMIES_COUNT.crs == LIMIT_SPAWN.crs and LIMIT_SPAWN.crs != -1: return
 	var crs = CRS.instantiate()
-	addEnnemy(parent, crs)
+	addEnnemy(parent, crs, 0.4)
 	crs.connect('on_death', enemieKillCounter)
 	crs.connect('on_death', $rose.pumpBlood)
 	
 	SPAWN_ENEMIES_COUNT.crs += 1
 	
 func addTank0(parent: Node2D):
+	if ennemyKillCount < 10: return
 	if SPAWN_ENEMIES_COUNT.tank == LIMIT_SPAWN.tank and LIMIT_SPAWN.tank != -1: return
 	var tank = TANK_0.instantiate()
-	addEnnemy(parent, tank)
+	addEnnemy(parent, tank, 0.3)
 	tank.connect('on_death', enemieKillCounter)
 	SPAWN_ENEMIES_COUNT.tank += 1
 	
-func addEnnemy(parent: Node2D, enemy: Node2D):
+func addEnnemy(parent: Node2D, enemy: Node2D, scaling: float = 1):
 	var positionAndDirection = getSpawnerPosition()
 	enemy.direction = positionAndDirection[0]
 	enemy.position = positionAndDirection[1]
-	enemy.scale.x = 0.3
-	enemy.scale.y = 0.3
+	enemy.scale.x = scaling
+	enemy.scale.y = scaling
 	parent.add_child(enemy)
 
 func enemieKillCounter(_pos, _tar):

@@ -45,16 +45,19 @@ script = ExtResource("1_c0urp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
+scale = Vector2(2.1286216, 2.1286216)
 shape = SubResource("RectangleShape2D_c0urp")
 
 [node name="Tank0Bullet" type="Sprite2D" parent="."]
 rotation = 1.5707964
-scale = Vector2(0.093023255, 0.09302327)
+scale = Vector2(0.19801131, 0.19801134)
 texture = ExtResource("1_inxvq")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(2.1286216, 2.1286216)
 
 [node name="ZHitBox" type="Area2D" parent="."]
+scale = Vector2(2.1286216, 2.1286216)
 collision_layer = 64
 collision_mask = 137
 script = ExtResource("2_c0urp")

@@ -1,5 +1,7 @@
 class_name ZHurtBox extends Area2D
 
+@export var material_type = "no_name"
+
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
 
@@ -17,4 +19,6 @@ func _on_area_entered(hit_box: Area2D) -> void:
 			"origin": hit_box.origin
 		})
 	if hit_box.owner and hit_box.owner.has_method("on_making_damage"):
-		hit_box.owner.on_making_damage()
+		hit_box.owner.on_making_damage({
+			"material": material_type
+		})

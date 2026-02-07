@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED: int = 550
+const SPEED: int = 650
 
 var isExplosing = false
 var isLaunched = false
@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 		velocity = Vector2(0,SPEED).rotated(35 * direction) 
 		isLaunched = true
 	velocity += get_gravity() * delta
-	rotation = velocity.angle() + PI
+	rotation = velocity.angle()
 	
 	if(is_on_floor()): queue_free()
 	move_and_slide()
@@ -27,7 +27,7 @@ func explose() -> void:
 func disableCollisionShape():
 	$ZHitBox/CollisionShape2D.disabled = true 
 
-func on_making_damage() -> void:
+func on_making_damage(_target) -> void:
 	explose()
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:

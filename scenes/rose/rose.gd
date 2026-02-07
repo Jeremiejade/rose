@@ -4,7 +4,7 @@ var ATTACKS = []
 var pumpCurvePoints
 var pump
 
-@export var life: int = 100
+var life = gameConfig.rose_life
 
 const ROOT = preload("res://scenes/rose/root.tscn");
 

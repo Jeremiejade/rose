@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var SPEED := 50
 
-@export var health := 10
+@export var health := 30
 @export var direction := -1
 @export var reloadingTime := 3
 
@@ -12,6 +12,7 @@ var isShooting := false
 const BULLET_GUN = preload("res://scenes/BulletGun/tank_0_bullet.tscn")
 
 signal on_death
+signal on_taking_shoot
 
 func _ready() -> void:
 	$Body.scale.x  = -direction * $Body.scale.x
@@ -64,12 +65,19 @@ func shoot():
 func canAttack() -> void:
 	var front = $Body/canon_origin
 
-	if abs(front.global_position).x < 250:
+	if abs(front.global_position).x < 350:
 		state = 'attack'
 
 func take_damage(attack):
 	health -= attack.damage
-		
+	on_taking_shoot.emit()
+	modulateColorSprite(Color(1, 0, 0.1, 0.3))
+	await get_tree().create_timer(0.05).timeout
+	modulateColorSprite(Color.WHITE)
+	
+func modulateColorSprite(c:Color):
+	$Body/Tank0Body.modulate = c
+	$Tank0Shield.modulate =  c
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	on_death.emit(self.global_position, self)
