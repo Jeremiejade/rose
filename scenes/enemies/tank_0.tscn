@@ -1,9 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://1j77j3miomd2"]
+[gd_scene format=3 uid="uid://1j77j3miomd2"]
 
 [ext_resource type="Texture2D" uid="uid://cugrse80t6n4l" path="res://assets/enemie/tank_0/tank_0_body.png" id="1_fn0ak"]
 [ext_resource type="Script" uid="uid://ra7lrmm3hnof" path="res://scenes/enemies/tank_0.gd" id="1_o2tsw"]
 [ext_resource type="Texture2D" uid="uid://gt56tye1lpco" path="res://assets/enemie/tank_0/tank_0_shield.png" id="2_o2tsw"]
-[ext_resource type="Script" uid="uid://b3yiuwqux8rc3" path="res://scenes/shield.gd" id="4_0qsaa"]
 [ext_resource type="Script" uid="uid://bcn3h40a6b2o5" path="res://scenes/z_hurt_box.gd" id="6_3atxl"]
 [ext_resource type="Texture2D" uid="uid://c013f0k33hny4" path="res://assets/bullets/bullet_dust_0.png" id="7_c0sks"]
 [ext_resource type="Texture2D" uid="uid://dvru2t63w82uw" path="res://assets/bullets/bullet_dust_1.png" id="8_0bplb"]
@@ -12,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cfxss24q1vl4p" path="res://assets/bullets/bullet_dust_4.png" id="11_n76cu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f6lk2"]
-radius = 64.0
+radius = 79.0
 height = 364.0
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_ej3ya"]
@@ -48,60 +47,63 @@ animations = [{
 "speed": 20.0
 }]
 
-[node name="Tank0" type="CharacterBody2D"]
+[node name="Tank0" type="CharacterBody2D" unique_id=1412126393]
 collision_layer = 4
 collision_mask = 129
 script = ExtResource("1_o2tsw")
 metadata/_edit_horizontal_guides_ = [-337.0, -113.0, -203.0]
 
-[node name="Body" type="Node2D" parent="."]
+[node name="Body" type="Node2D" parent="." unique_id=1930275275]
 
-[node name="Tank0Body" type="Sprite2D" parent="Body"]
+[node name="Tank0Body" type="Sprite2D" parent="Body" unique_id=849829164]
 position = Vector2(-2, -168)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_fn0ak")
 
-[node name="canon_origin" type="Node2D" parent="Body"]
+[node name="canon_origin" type="Node2D" parent="Body" unique_id=1788738417]
 position = Vector2(-213, -323)
 
-[node name="Tank0Shield" type="Sprite2D" parent="."]
+[node name="Tank0Shield" type="Sprite2D" parent="." unique_id=1087941799]
 position = Vector2(0, -203)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_o2tsw")
 offset = Vector2(-516, 0)
 
-[node name="ShieldHurtBox" type="Area2D" parent="Tank0Shield"]
+[node name="center" type="Node2D" parent="Tank0Shield" unique_id=1955166476]
+
+[node name="ShieldZHurtBox" type="Area2D" parent="Tank0Shield" unique_id=115685849]
 collision_layer = 32
 collision_mask = 16
-script = ExtResource("4_0qsaa")
+script = ExtResource("6_3atxl")
+hurt_box_name = "Shield"
+metadata/_custom_type_script = "uid://bcn3h40a6b2o5"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tank0Shield/ShieldHurtBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tank0Shield/ShieldZHurtBox" unique_id=531743768]
 position = Vector2(-988, -6)
 scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_f6lk2")
 
-[node name="center" type="Node2D" parent="Tank0Shield"]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=2072279923]
 scale = Vector2(6.4026423, 0.81166637)
 shape = SubResource("ConvexPolygonShape2D_ej3ya")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1604234378]
 position = Vector2(0, -59.5)
 shape = SubResource("RectangleShape2D_0qsaa")
 
-[node name="ZHurtBox" type="Area2D" parent="."]
+[node name="ZHurtBox" type="Area2D" parent="." unique_id=1947258394]
 collision_layer = 32
 collision_mask = 16
 script = ExtResource("6_3atxl")
+hurt_box_name = "Body"
 metadata/_custom_type_script = "uid://bcn3h40a6b2o5"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ZHurtBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZHurtBox" unique_id=1389628292]
 position = Vector2(6, -179)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_8i3du")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1971636401]
 visible = false
 position = Vector2(-29, -150)
 scale = Vector2(28.863636, 28.863636)

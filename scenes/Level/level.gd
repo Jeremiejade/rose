@@ -8,7 +8,7 @@ var random = 1;
 var ennemyKillCount = 0;
 
 var LIMIT_SPAWN = {
-	"tank": 1,
+	"tank": 5,
 	"crs": 100
 }
 var SPAWN_ENEMIES_COUNT = {
@@ -27,7 +27,7 @@ func addCrs(parent: Node2D):
 	SPAWN_ENEMIES_COUNT.crs += 1
 	
 func addTank0(parent: Node2D):
-	if ennemyKillCount < 10: return
+	if ennemyKillCount < 0: return
 	if SPAWN_ENEMIES_COUNT.tank == LIMIT_SPAWN.tank and LIMIT_SPAWN.tank != -1: return
 	var tank = TANK_0.instantiate()
 	addEnnemy(parent, tank, 0.3)

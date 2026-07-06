@@ -1,6 +1,7 @@
 class_name ZHurtBox extends Area2D
 
 @export var material_type = "no_name"
+@export var hurt_box_name = "no_name"
 
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
@@ -9,6 +10,7 @@ func _ready() -> void:
 func _on_area_entered(hit_box: Area2D) -> void:
 	if hit_box == null: pass
 	if !(hit_box is ZHitBox): return
+	print('toucher', hit_box.origin)
 	if owner.has_method("take_damage"):
 		owner.take_damage({
 			"damage": hit_box.damage,
@@ -16,7 +18,8 @@ func _on_area_entered(hit_box: Area2D) -> void:
 			"rotation": hit_box.global_rotation,
 			"position": hit_box.global_position,
 			"type": hit_box.type,
-			"origin": hit_box.origin
+			"origin": hit_box.origin,
+			"hurt_box_name": hurt_box_name
 		})
 	if hit_box.owner and hit_box.owner.has_method("on_making_damage"):
 		hit_box.owner.on_making_damage({

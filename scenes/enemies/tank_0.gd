@@ -3,6 +3,7 @@ extends CharacterBody2D
 var SPEED := 50
 
 @export var health := 30
+@export var shieldHealth := 150
 @export var direction := -1
 @export var reloadingTime := 3
 
@@ -21,6 +22,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if health <= 0:
 		state = "dead"
+	elif shieldHealth == 0:
+		shieldHealth -= 1
 
 	if state != "dead" :
 		if not is_on_floor():
@@ -33,7 +36,8 @@ func _physics_process(delta: float) -> void:
 			shoot()
 	handleAnimation()
 	canAttack()
-	handlePositionShield()
+	if shieldHealth > 0:
+		handlePositionShield()
 	move_and_slide()
 	
 func handlePositionShield():
@@ -69,16 +73,33 @@ func canAttack() -> void:
 		state = 'attack'
 
 func take_damage(attack):
-	health -= attack.damage
-	on_taking_shoot.emit()
-	modulateColorSprite(Color(1, 0, 0.1, 0.3))
-	await get_tree().create_timer(0.05).timeout
-	modulateColorSprite(Color.WHITE)
+	print('c moi',attack.hurt_box_name)
+	if attack.hurt_box_name == "Shield":
+		shieldHealth -= attack.damage
+		modulateColorSprite(Color(1, 0, 0.1, 0.3), 'shield')
+		await get_tree().create_timer(0.05).timeout
+		modulateColorSprite(Color.WHITE, 'shield')
+		if shieldHealth <= 0:
+			$Tank0Shield.queue_free()
+	else :
+		health -= attack.damage
+		on_taking_shoot.emit()
+		var target = 'all'
+		if(shieldHealth <= 0):
+			target = 'tank'
+		modulateColorSprite(Color(1, 0, 0.1, 0.3), target)
+		await get_tree().create_timer(0.05).timeout
+		modulateColorSprite(Color.WHITE, target)
 	
-func modulateColorSprite(c:Color):
-	$Body/Tank0Body.modulate = c
-	$Tank0Shield.modulate =  c
-
+func modulateColorSprite(c:Color, target = 'all'):
+	if target == 'all' :
+		$Body/Tank0Body.modulate = c
+		$Tank0Shield.modulate =  c
+	if target == 'tank' :
+		$Body/Tank0Body.modulate =  c
+	if target == 'shield' :
+		$Tank0Shield.modulate =  c
+		
 func _on_animated_sprite_2d_animation_finished() -> void:
 	on_death.emit(self.global_position, self)
 	queue_free()
