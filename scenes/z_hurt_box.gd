@@ -10,7 +10,6 @@ func _ready() -> void:
 func _on_area_entered(hit_box: Area2D) -> void:
 	if hit_box == null: pass
 	if !(hit_box is ZHitBox): return
-	print('toucher', hit_box.origin)
 	if owner.has_method("take_damage"):
 		owner.take_damage({
 			"damage": hit_box.damage,

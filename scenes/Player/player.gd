@@ -8,7 +8,6 @@ var isJumping = false
 
 
 func _physics_process(delta: float) -> void:
-	print($AnimationPlayer.speed_scale)
 	$AnimationPlayer.speed_scale = SPEED / 100
 	# Add the gravity.
 	if is_on_floor():

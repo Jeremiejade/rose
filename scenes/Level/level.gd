@@ -1,21 +1,20 @@
 extends Node2D
 
+
 const CRS = preload("res://scenes/enemies/enemy_crs.tscn");
 const TANK_0 = preload("res://scenes/enemies/tank_0.tscn");
 var rng = RandomNumberGenerator.new();
 var random = 1;
-
 var ennemyKillCount = 0;
 
 var LIMIT_SPAWN = {
 	"tank": 5,
-	"crs": 100
+	"crs": -1
 }
 var SPAWN_ENEMIES_COUNT = {
 	"tank": 0,
 	"crs": 0
 }
-
 
 func addCrs(parent: Node2D):
 	if SPAWN_ENEMIES_COUNT.crs == LIMIT_SPAWN.crs and LIMIT_SPAWN.crs != -1: return

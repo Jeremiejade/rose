@@ -51,7 +51,6 @@ func _physics_process(delta: float) -> void:
 	
 func damageTakenManager(attack):
 	slidingState.puissance = attack.damage * SPEED / 4
-	print("attack.origin",attack.origin)
 	if attack.origin == "tankShield":
 		#print("rotaion", attack.rotation)
 		#velocity.x = slidingState.puissance * attack.rotation

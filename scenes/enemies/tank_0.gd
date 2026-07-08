@@ -73,7 +73,6 @@ func canAttack() -> void:
 		state = 'attack'
 
 func take_damage(attack):
-	print('c moi',attack.hurt_box_name)
 	if attack.hurt_box_name == "Shield":
 		shieldHealth -= attack.damage
 		modulateColorSprite(Color(1, 0, 0.1, 0.3), 'shield')
