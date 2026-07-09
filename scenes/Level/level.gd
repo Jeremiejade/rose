@@ -46,6 +46,9 @@ const ROUND_1 = [
 	}
 ]
 
+func _ready() -> void:
+	printScore()
+
 func addEnnemyByName(enemyName: String, parent: Node2D):
 	var positionAndDirection = getSpawnerPosition()
 
@@ -87,6 +90,9 @@ func addEnnemy(parent: Node2D, enemy: Node2D, positionAndDirection, scaling: flo
 func enemieKillCounter(_pos, tar):
 	ennemyKillCount += 1
 	ENEMIES_KILL_COUNT[tar.NAME] += 1
+	printScore()
+
+func printScore():
 	var score := '[color=black][b][font_size=20]';
 	var  ENEMIES_KILL_NAMES = ENEMIES_KILL_COUNT.keys();
 	var  ENEMIES_KILL_COUNT_VALUES = ENEMIES_KILL_COUNT.values();

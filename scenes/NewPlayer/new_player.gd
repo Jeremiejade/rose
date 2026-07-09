@@ -3,7 +3,7 @@ class_name Player extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
-const TOTAL_JUMP_FUEL = 300
+const TOTAL_JUMP_FUEL = 600
 var curentJumpFuel = TOTAL_JUMP_FUEL;
 var jumpFuelIsLoad = false;
 var slidingState = { 

@@ -19,7 +19,7 @@ distance = -621.0
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_676nv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vlvsn"]
-size = Vector2(36, 705)
+size = Vector2(35, 1305.5)
 
 [node name="Level" type="Node2D" unique_id=1343047910]
 script = ExtResource("1_65260")
@@ -30,7 +30,7 @@ scale = Vector2(1.4924825, 1.4924825)
 
 [node name="Parallax2D2Ciel" type="Parallax2D" parent="background" unique_id=1726864176]
 scale = Vector2(0.9999999, 0.9999999)
-scroll_scale = Vector2(0, 0)
+scroll_scale = Vector2(0, 0.6)
 
 [node name="Ciel" type="Sprite2D" parent="background/Parallax2D2Ciel" unique_id=800850702]
 position = Vector2(616.4227, -255.94943)
@@ -44,25 +44,27 @@ texture = ExtResource("3_wk52d")
 
 [node name="Parallax2DMontagne" type="Parallax2D" parent="background" unique_id=1760563246]
 scale = Vector2(0.9999998, 0.9999998)
-scroll_scale = Vector2(0.001, 0)
+scroll_scale = Vector2(0.1, 0.9)
 
 [node name="Montagne" type="Sprite2D" parent="background/Parallax2DMontagne" unique_id=179928623]
-position = Vector2(854.9516, -542.6255)
-scale = Vector2(1.1343765, 0.8953413)
+position = Vector2(834.85077, -544.7301)
+scale = Vector2(1.0879657, 0.9039001)
 texture = ExtResource("4_c6jvp")
+offset = Vector2(21.245, 0)
 
 [node name="Parallax2DArbre4" type="Parallax2D" parent="background" unique_id=1029475590]
 scale = Vector2(0.9999999, 0.9999999)
-scroll_scale = Vector2(0.03, 0)
+scroll_scale = Vector2(0.1, 0.9)
 
 [node name="Arbre4" type="Sprite2D" parent="background/Parallax2DArbre4" unique_id=1972206804]
-position = Vector2(655.0001, -407.00003)
+position = Vector2(664.3805, -437.31702)
 scale = Vector2(1.0000001, 1.0000001)
 texture = ExtResource("5_nlllx")
 
 [node name="Parallax2DArbre3" type="Parallax2D" parent="background" unique_id=573963142]
 scale = Vector2(0.9999999, 0.9999999)
-scroll_scale = Vector2(0.035, 0)
+scroll_scale = Vector2(0.2, 0.86)
+scroll_offset = Vector2(9.38034, -30.316978)
 
 [node name="Arbre3" type="Sprite2D" parent="background/Parallax2DArbre3" unique_id=468035030]
 position = Vector2(750.0002, -368.00006)
@@ -71,16 +73,18 @@ texture = ExtResource("6_yobex")
 
 [node name="Parallax2DArbre2" type="Parallax2D" parent="background" unique_id=1279859538]
 scale = Vector2(0.9999999, 0.9999999)
-scroll_scale = Vector2(0.04, 0)
+scroll_scale = Vector2(0.3, 0.83)
+scroll_offset = Vector2(9.38034, -30.316978)
 
 [node name="Arbre2" type="Sprite2D" parent="background/Parallax2DArbre2" unique_id=265601190]
-position = Vector2(708.88605, -292.80078)
+position = Vector2(661.98425, -298.6646)
 scale = Vector2(1.0000001, 1.0000001)
 texture = ExtResource("7_thdbk")
 
 [node name="Parallax2DArbre1" type="Parallax2D" parent="background" unique_id=368777666]
 scale = Vector2(0.67002445, 0.67002445)
-scroll_scale = Vector2(0.05, 0)
+scroll_scale = Vector2(0.4, 0.8)
+scroll_offset = Vector2(9.380339, -30.316973)
 
 [node name="Arbre1" type="Sprite2D" parent="background/Parallax2DArbre1" unique_id=1803101873]
 position = Vector2(844.0001, -342.00006)
@@ -129,18 +133,18 @@ collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_676nv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall" unique_id=1200419381]
-position = Vector2(-24, 334)
+position = Vector2(-534.5, 26.75)
 shape = SubResource("RectangleShape2D_vlvsn")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Wall" unique_id=1623082799]
-position = Vector2(1933, 337)
+position = Vector2(2371, 37)
 shape = SubResource("RectangleShape2D_vlvsn")
 
 [node name="SpawnerLeft" type="Node2D" parent="." unique_id=1963723707]
-position = Vector2(-197, 947)
+position = Vector2(-761, 942)
 
 [node name="SpawneryRight" type="Node2D" parent="." unique_id=747254746]
-position = Vector2(2218, 939)
+position = Vector2(2657, 915)
 
 [node name="SpawnerTimer" type="Timer" parent="." unique_id=1069759113]
 autostart = true
