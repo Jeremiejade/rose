@@ -67,11 +67,16 @@ func shoot():
 	pass
 
 func canAttack() -> void:
-	var front = $Body/canon_origin
+	var frontGlobalePosition = $Body/canon_origin.global_position
+	
+	var roseGLobalePosition = gameConfig.rose.global_position
+	var playerGloablePosition = gameConfig.player.global_position
 
-	if abs(front.global_position).x < 350:
+	if abs(frontGlobalePosition - roseGLobalePosition).x < 350 ||  abs(frontGlobalePosition - playerGloablePosition).x < 350:
 		state = 'attack'
-
+	elif state == 'attack' :
+		state = 'walk'
+	
 func take_damage(attack):
 	if attack.hurt_box_name == "Shield":
 		shieldHealth -= attack.damage

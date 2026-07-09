@@ -104,7 +104,7 @@ position = Vector2(2341, 656)
 texture = ExtResource("9_3oiv0")
 
 [node name="rose" parent="." unique_id=580838012 instance=ExtResource("4_v753x")]
-position = Vector2(1056, 999)
+position = Vector2(1058, 1008)
 scale = Vector2(0.5, 0.5)
 collision_layer = 128
 collision_mask = 198
@@ -124,7 +124,8 @@ script = ExtResource("5_65260")
 
 [node name="Wall" type="StaticBody2D" parent="." unique_id=1048609044]
 position = Vector2(13, 355)
-collision_mask = 3
+collision_layer = 4
+collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_676nv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall" unique_id=1200419381]
