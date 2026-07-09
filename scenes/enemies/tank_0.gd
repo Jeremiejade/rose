@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 var SPEED := 50
 const SHIELD_SPEED := PI/150
+const NAME = 'tank_0'
 
 @export var health := 30
 @export var shieldHealth := 150
@@ -18,6 +19,8 @@ signal on_taking_shoot
 
 func _ready() -> void:
 	$Body.scale.x  = -direction * $Body.scale.x
+	if(direction > 0):
+		$Tank0Shield.rotation = PI
 
 
 func _physics_process(delta: float) -> void:
@@ -38,10 +41,10 @@ func _physics_process(delta: float) -> void:
 	handleAnimation()
 	canAttack()
 	if shieldHealth > 0:
-		handlePositionShield(delta)
+		handlePositionShield()
 	move_and_slide()
 	
-func handlePositionShield(delta):
+func handlePositionShield():
 	var player = gameConfig.player;
 	var shield = $Tank0Shield
 	if !player: return

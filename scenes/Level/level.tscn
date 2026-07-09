@@ -137,10 +137,10 @@ position = Vector2(1933, 337)
 shape = SubResource("RectangleShape2D_vlvsn")
 
 [node name="SpawnerLeft" type="Node2D" parent="." unique_id=1963723707]
-position = Vector2(449, 929)
+position = Vector2(-197, 947)
 
 [node name="SpawneryRight" type="Node2D" parent="." unique_id=747254746]
-position = Vector2(1588, 947)
+position = Vector2(2218, 939)
 
 [node name="SpawnerTimer" type="Timer" parent="." unique_id=1069759113]
 autostart = true
@@ -159,8 +159,8 @@ scroll_active = false
 [node name="SkillCountText2" type="RichTextLabel" parent="CanvasLayer" unique_id=960001915]
 offset_left = 181.0
 offset_top = 15.0
-offset_right = 489.0
-offset_bottom = 57.0
+offset_right = 524.0
+offset_bottom = 285.0
 bbcode_enabled = true
 text = "[color=black][b][font_size=30]0[/font_size][/b][/color]"
 scroll_active = false

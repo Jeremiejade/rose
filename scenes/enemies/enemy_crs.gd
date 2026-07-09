@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+const NAME = 'crs'
 var SPEED := 100
 var state := 'walk'
 var originAttackType := ""
