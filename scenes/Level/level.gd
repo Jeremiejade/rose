@@ -8,8 +8,8 @@ var random = 1;
 var ennemyKillCount = 0;
 
 var LIMIT_SPAWN = {
-	"tank": 5,
-	"crs": -1
+	"tank": 1,
+	"crs": 0
 }
 var SPAWN_ENEMIES_COUNT = {
 	"tank": 0,

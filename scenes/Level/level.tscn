@@ -104,7 +104,7 @@ position = Vector2(2341, 656)
 texture = ExtResource("9_3oiv0")
 
 [node name="rose" parent="." unique_id=580838012 instance=ExtResource("4_v753x")]
-position = Vector2(1058, 1008)
+position = Vector2(1055, 1004)
 scale = Vector2(0.5, 0.5)
 collision_layer = 128
 collision_mask = 198
@@ -137,10 +137,10 @@ position = Vector2(1933, 337)
 shape = SubResource("RectangleShape2D_vlvsn")
 
 [node name="SpawnerLeft" type="Node2D" parent="." unique_id=1963723707]
-position = Vector2(-299, 965)
+position = Vector2(449, 929)
 
 [node name="SpawneryRight" type="Node2D" parent="." unique_id=747254746]
-position = Vector2(2092, 943)
+position = Vector2(1588, 947)
 
 [node name="SpawnerTimer" type="Timer" parent="." unique_id=1069759113]
 autostart = true

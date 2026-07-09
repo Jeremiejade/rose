@@ -73,7 +73,7 @@ offset = Vector2(-516, 0)
 
 [node name="ShieldZHurtBox" type="Area2D" parent="Tank0Shield" unique_id=115685849]
 collision_layer = 32
-collision_mask = 16
+collision_mask = 17
 script = ExtResource("6_3atxl")
 hurt_box_name = "Shield"
 metadata/_custom_type_script = "uid://bcn3h40a6b2o5"

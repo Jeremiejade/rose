@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var SPEED := 50
+const SHIELD_SPEED := PI/150
 
 @export var health := 30
 @export var shieldHealth := 150
@@ -37,17 +38,23 @@ func _physics_process(delta: float) -> void:
 	handleAnimation()
 	canAttack()
 	if shieldHealth > 0:
-		handlePositionShield()
+		handlePositionShield(delta)
 	move_and_slide()
 	
-func handlePositionShield():
+func handlePositionShield(delta):
 	var player = gameConfig.player;
 	var shield = $Tank0Shield
 	if !player: return
 	var angle = ($Tank0Shield/center.global_position - player.position).angle()
+	
 	if angle < 0 :
-		if angle < -2:  angle = PI
+		if angle < -PI/2:  angle = PI
 		else:  angle = 0
+	
+	var angleRange = angle - shield.rotation
+	if abs(angleRange) > SHIELD_SPEED :
+		angle = shield.rotation + (SHIELD_SPEED * angleRange/abs(angleRange))
+	
 	shield.rotation = angle
 	
 func handleAnimation():
@@ -85,6 +92,7 @@ func take_damage(attack):
 		modulateColorSprite(Color.WHITE, 'shield')
 		if shieldHealth <= 0:
 			$Tank0Shield.queue_free()
+			$CollisionShape2D2.queue_free()
 	else :
 		health -= attack.damage
 		on_taking_shoot.emit()
