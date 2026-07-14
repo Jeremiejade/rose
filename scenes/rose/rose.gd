@@ -1,12 +1,15 @@
 class_name Rose extends StaticBody2D
 
+signal on_update_life
+
+const ROOT = preload("res://scenes/rose/root.tscn");
+const MAX_LIFE := 100.0
+
 var ATTACKS = []
 var pumpCurvePoints
 var pump
+var life := MAX_LIFE
 
-var life = gameConfig.rose_life
-
-const ROOT = preload("res://scenes/rose/root.tscn");
 
 func _ready() -> void:
 	gameConfig.rose = self
@@ -22,12 +25,26 @@ func pumpBlood(targetPosition: Vector2, target: CharacterBody2D) -> void:
 	root.setCurvePoints(targetPosition.x - global_position.x, target)
 	root.position = $rootSpawnerTarget.position
 	self.add_child(root)
+	healing(target.NAME)
 
 func take_damage(attack):
 	if(attack.origin != "player"):
 		ATTACKS.push_front(attack)
+		
+
+func healing(killName: String):
+	if life == MAX_LIFE :
+		return
+	on_update_life.emit()
+	if killName == 'crs':
+		life += 0.1
+	if killName == 'tank_0':
+		life += 5
+	if life > MAX_LIFE :
+		life = MAX_LIFE
 
 func handleFelure():
+	on_update_life.emit()
 	if life > 80 :
 		$AnimatedSprite2D.visible = false
 	elif life <= 80 and life > 60 :

@@ -47,7 +47,10 @@ const ROUND_1 = [
 ]
 
 func _ready() -> void:
+	$rose.connect("on_update_life", updateRoseLifeProgressBar)
 	printScore()
+	$CanvasLayer/RoseLifeProgressBar.max_value = gameConfig.rose.life
+	updateRoseLifeProgressBar()
 
 func addEnnemyByName(enemyName: String, parent: Node2D):
 	var positionAndDirection = getSpawnerPosition()
@@ -98,8 +101,12 @@ func printScore():
 	var  ENEMIES_KILL_COUNT_VALUES = ENEMIES_KILL_COUNT.values();
 	for index in ENEMIES_KILL_NAMES.size():
 		score += (str(ENEMIES_KILL_NAMES[index]) + ' : ' + str(ENEMIES_KILL_COUNT_VALUES[index])+ '\n')
-		print(score)
+		
 	$CanvasLayer/SkillCountText2.text =str(score, '[/font_size][/b][/color]')
+
+func updateRoseLifeProgressBar():
+	$CanvasLayer/RoseLifeProgressBar.value = gameConfig.rose.life
+
 
 func getSpawnerPosition():
 	random = rng.randf_range(-1, 1)
