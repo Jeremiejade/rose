@@ -8,7 +8,7 @@ var random = 1;
 var ennemyKillCount = 0;
 
 var LIMIT_SPAWN = {
-	"tank_0": 6,
+	"tank_0": -1,
 	"crs": -1
 }
 var SPAWN_ENEMIES_COUNT = {
@@ -25,26 +25,36 @@ var ADD_ENNEMY_FCT = {
 	"tank_0": addTank0,
 	"crs": addCrs
 }
-
 const ROUND_1 = [
 	{
 		"name": 'tank_0',
 		"spawnCondition": [
-			{
-				"name": 'crs',
-				"kill": 10
-			}
+			
 		],
 		"currentSpawn": 1,
-		"rng": 10
+		"rng": 1
 	},
-	{
-		"name": 'crs',
-		"currentSpawn": 10,
-		"rng": 2,
-		"spawnCondition": []
-	}
+	
 ]
+#const ROUND_1 = [
+	#{
+		#"name": 'tank_0',
+		#"spawnCondition": [
+			#{
+				#"name": 'crs',
+				#"kill": 10
+			#}
+		#],
+		#"currentSpawn": 1,
+		#"rng": 10
+	#},
+	#{
+		#"name": 'crs',
+		#"currentSpawn": 10,
+		#"rng": 2,
+		#"spawnCondition": []
+	#}
+#]
 
 func _ready() -> void:
 	$rose.connect("on_update_life", updateRoseLifeProgressBar)

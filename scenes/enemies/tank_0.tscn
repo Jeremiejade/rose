@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cugrse80t6n4l" path="res://assets/enemie/tank_0/tank_0_body.png" id="1_fn0ak"]
 [ext_resource type="Script" uid="uid://ra7lrmm3hnof" path="res://scenes/enemies/tank_0.gd" id="1_o2tsw"]
 [ext_resource type="Texture2D" uid="uid://gt56tye1lpco" path="res://assets/enemie/tank_0/tank_0_shield.png" id="2_o2tsw"]
+[ext_resource type="Script" uid="uid://bbvmyj2cykdsp" path="res://scenes/z_hit_box.gd" id="5_ej3ya"]
 [ext_resource type="Script" uid="uid://bcn3h40a6b2o5" path="res://scenes/z_hurt_box.gd" id="6_3atxl"]
 [ext_resource type="Texture2D" uid="uid://c013f0k33hny4" path="res://assets/bullets/bullet_dust_0.png" id="7_c0sks"]
 [ext_resource type="Texture2D" uid="uid://dvru2t63w82uw" path="res://assets/bullets/bullet_dust_1.png" id="8_0bplb"]
@@ -10,9 +11,72 @@
 [ext_resource type="Texture2D" uid="uid://67x4fch11ayt" path="res://assets/bullets/bullet_dust_3.png" id="10_h44vl"]
 [ext_resource type="Texture2D" uid="uid://cfxss24q1vl4p" path="res://assets/bullets/bullet_dust_4.png" id="11_n76cu"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f6lk2"]
-radius = 79.0
-height = 364.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ej3ya"]
+size = Vector2(97, 402)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3atxl"]
+size = Vector2(1170, 744)
+
+[sub_resource type="Animation" id="Animation_ej3ya"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-516, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ZHitBox/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-520, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_3atxl"]
+resource_name = "attack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-516, 0), Vector2(-630.96, 0), Vector2(-516, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ZHitBox/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06637598, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-520, 2), Vector2(-642, 4), Vector2(-520, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c0sks"]
+_data = {
+&"RESET": SubResource("Animation_ej3ya"),
+&"attack": SubResource("Animation_3atxl")
+}
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_ej3ya"]
 points = PackedVector2Array(-86.21441, -139.21976, -86.21441, -247.63869, -83.40307, -425.05148, -73.875755, -592.608, -61.224724, -724.43555, -43.731945, -834.0865, -22.178345, -908.0085, 0, -931.4171, 22.6469, -905.54443, 43.57576, -836.5506, 61.06854, -728.13165, 74.81287, -587.6799, 83.40307, -421.35538, 86.21441, -248.87071, 86.21441, -141.68382)
@@ -69,8 +133,6 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_o2tsw")
 offset = Vector2(-516, 0)
 
-[node name="center" type="Node2D" parent="Tank0Shield" unique_id=1955166476]
-
 [node name="ShieldZHurtBox" type="Area2D" parent="Tank0Shield" unique_id=115685849]
 collision_layer = 32
 collision_mask = 17
@@ -79,9 +141,25 @@ hurt_box_name = "Shield"
 metadata/_custom_type_script = "uid://bcn3h40a6b2o5"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tank0Shield/ShieldZHurtBox" unique_id=531743768]
-position = Vector2(-988, -6)
+position = Vector2(-1065, -10)
 scale = Vector2(2, 2)
-shape = SubResource("CapsuleShape2D_f6lk2")
+shape = SubResource("RectangleShape2D_ej3ya")
+
+[node name="ZHitBox" type="Area2D" parent="Tank0Shield" unique_id=388541122]
+collision_layer = 64
+collision_mask = 8
+script = ExtResource("5_ej3ya")
+damage = 1
+origin = "tankShield"
+metadata/_custom_type_script = "uid://bbvmyj2cykdsp"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tank0Shield/ZHitBox" unique_id=641287965]
+position = Vector2(-520, 2)
+shape = SubResource("RectangleShape2D_3atxl")
+debug_color = Color(1, 0.45490196, 0.36862746, 0.3019608)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Tank0Shield" unique_id=1131201007]
+libraries/ = SubResource("AnimationLibrary_c0sks")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=2072279923]
 scale = Vector2(6.4026423, 0.81166637)
@@ -90,6 +168,10 @@ shape = SubResource("ConvexPolygonShape2D_ej3ya")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1604234378]
 position = Vector2(0, -59.5)
 shape = SubResource("RectangleShape2D_0qsaa")
+
+[node name="Center" type="Node2D" parent="." unique_id=1955166476]
+position = Vector2(0, -203)
+scale = Vector2(0.5, 0.5)
 
 [node name="ZHurtBox" type="Area2D" parent="." unique_id=1947258394]
 collision_layer = 32

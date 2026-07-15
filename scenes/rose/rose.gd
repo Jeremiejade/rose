@@ -28,7 +28,7 @@ func pumpBlood(targetPosition: Vector2, target: CharacterBody2D) -> void:
 	healing(target.NAME)
 
 func take_damage(attack):
-	if(attack.origin != "player"):
+	if(!attack.origin.begins_with('player')):
 		ATTACKS.push_front(attack)
 		
 

@@ -47,14 +47,28 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
-		bounceManagement(collision.get_collider().name, oldVelocity)
+		if !slidingState.isActive :
+			bounceManagement(collision.get_collider(), oldVelocity)
+	limitVelocity()
 	
+	
+func limitVelocity():
+	if abs(velocity.x) > SPEED * 3:
+		if(velocity.x > 0):
+			velocity.x = SPEED * 3
+		else :
+			velocity.x = -SPEED * 3
+	if abs(velocity.y) > SPEED * 3:
+		if(velocity.y > 0):
+			velocity.y = SPEED * 3
+		else :
+			velocity.y = -SPEED * 3
+			
 func damageTakenManager(attack):
 	slidingState.puissance = attack.damage * SPEED / 4
 	if attack.origin == "tankShield":
-		#print("rotaion", attack.rotation)
-		#velocity.x = slidingState.puissance * attack.rotation
-		pass
+		velocity = (attack.position - $Center.global_position) * -2
+		print('velocity damageTakenManager : ',velocity)
 	else :
 		velocity.x = slidingState.puissance * attack.direction
 	slidingState.isActive = true
@@ -68,20 +82,20 @@ func refielFuel(delta: float) -> void:
 			curentJumpFuel = TOTAL_JUMP_FUEL
 
 func sliding(playerDirection, delta):
+	print('velo sliding : ', velocity.x)
 	if abs(velocity.x) > SPEED:
 		var modifier = 600;
 		if playerDirection == -slidingState.direction :
 			modifier = 1200;
-		velocity.x += (slidingState.puissance / abs(velocity.x)) * modifier * delta * - slidingState.direction 
-
+		velocity.x += (slidingState.puissance / abs(velocity.x)) * modifier * delta * -slidingState.direction 
 	else:
 		slidingState.isActive = false;
 
-func bounceManagement(colliderName: String, oldVelocity: Vector2) -> void:
-
-	if colliderName == "Wall":
+func bounceManagement(collider: CollisionObject2D, oldVelocity: Vector2) -> void:
+	if collider.name == "Wall":
 		velocity.x = -(oldVelocity.x/1.5)
-	if colliderName == "Ground":
+	
+	if collider.name == "Ground":
 		if (rotation < 1 and rotation > -1) or oldVelocity.y < 300:
 			rotation = 0
 		else: 
@@ -111,5 +125,5 @@ func _animationState(direction: float, _isSliding: bool) -> String:
 	return "idle"
 
 func take_damage(attack) :
-	if(attack.origin != "player"):
+	if(!attack.origin.begins_with('player')):
 		ATTACKS.push_front(attack)

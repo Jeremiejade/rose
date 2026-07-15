@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dymyjfjvgoyg5"]
+[gd_scene format=3 uid="uid://dymyjfjvgoyg5"]
 
 [ext_resource type="Texture2D" uid="uid://cjfkbhvehx4x" path="res://assets/newPlayer/back_leg.png" id="1_8aldm"]
 [ext_resource type="Script" uid="uid://d5t03gg8w4aj" path="res://scenes/NewPlayer/new_player.gd" id="1_dq5k8"]
@@ -288,46 +288,46 @@ _data = {
 radius = 63.0
 height = 148.0
 
-[node name="NewPlayer" type="CharacterBody2D"]
+[node name="NewPlayer" type="CharacterBody2D" unique_id=210544819]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_dq5k8")
 metadata/_edit_horizontal_guides_ = [-10.0, 70.0]
 
-[node name="sprites" type="Node2D" parent="."]
+[node name="sprites" type="Node2D" parent="." unique_id=262051691]
 
-[node name="BackLeg" type="Sprite2D" parent="sprites"]
+[node name="BackLeg" type="Sprite2D" parent="sprites" unique_id=2111488634]
 position = Vector2(-21, 1)
 texture = ExtResource("1_8aldm")
 offset = Vector2(3, 30)
 
-[node name="Saw" type="Sprite2D" parent="sprites"]
+[node name="Saw" type="Sprite2D" parent="sprites" unique_id=1507788811]
 visible = false
 position = Vector2(0, -10)
 texture = ExtResource("2_lvudr")
 
-[node name="Gun" parent="sprites" instance=ExtResource("4_jf0ni")]
+[node name="Gun" parent="sprites" unique_id=466541129 instance=ExtResource("4_jf0ni")]
 position = Vector2(0, -10)
 
-[node name="LaunchGrenade" type="Sprite2D" parent="sprites"]
+[node name="LaunchGrenade" type="Sprite2D" parent="sprites" unique_id=794933825]
 visible = false
 position = Vector2(0, -10)
 texture = ExtResource("4_30chd")
 offset = Vector2(33, 0)
 
-[node name="PowerFuel" parent="sprites" instance=ExtResource("7_d3wdy")]
+[node name="PowerFuel" parent="sprites" unique_id=1878117743 instance=ExtResource("7_d3wdy")]
 position = Vector2(0, 47)
 
-[node name="Body" type="Sprite2D" parent="sprites"]
+[node name="Body" type="Sprite2D" parent="sprites" unique_id=766975259]
 position = Vector2(0, -10)
 texture = ExtResource("5_pqvt8")
 
-[node name="FrontLeg" type="Sprite2D" parent="sprites"]
+[node name="FrontLeg" type="Sprite2D" parent="sprites" unique_id=872148716]
 position = Vector2(19, 5)
 texture = ExtResource("6_7wfrq")
 offset = Vector2(16, 29)
 
-[node name="FuelGauge" type="TextureProgressBar" parent="sprites/FrontLeg"]
+[node name="FuelGauge" type="TextureProgressBar" parent="sprites/FrontLeg" unique_id=282567642]
 offset_left = 8.10221
 offset_top = -0.702805
 offset_right = 46.1022
@@ -342,32 +342,33 @@ tint_under = Color(0.172549, 1, 1, 1)
 tint_over = Color(1, 0.14902, 0, 1)
 tint_progress = Color(0.59318, 0.199138, 0.842679, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=576874840]
 shape = SubResource("CapsuleShape2D_3864k")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ut3gk")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=233866141]
+libraries/ = SubResource("AnimationLibrary_ut3gk")
 
-[node name="ZHurtBox" type="Area2D" parent="."]
+[node name="ZHurtBox" type="Area2D" parent="." unique_id=1412795787]
 collision_layer = 8
 collision_mask = 64
 script = ExtResource("10_j05um")
 metadata/_custom_type_script = "uid://bcn3h40a6b2o5"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ZHurtBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZHurtBox" unique_id=721902657]
 shape = SubResource("CapsuleShape2D_l233m")
 debug_color = Color(0.7476307, 0.46180922, 0, 0.41960785)
 
-[node name="BodyHitBox" type="Area2D" parent="."]
+[node name="BodyHitBox" type="Area2D" parent="." unique_id=180156845]
 collision_layer = 16
 collision_mask = 32
 script = ExtResource("11_l233m")
 type = "playerBody"
+origin = "player_body"
 metadata/_custom_type_script = "uid://bbvmyj2cykdsp"
 
-[node name="BodyCollisionShape2D" type="CollisionShape2D" parent="BodyHitBox"]
+[node name="BodyCollisionShape2D" type="CollisionShape2D" parent="BodyHitBox" unique_id=2046268430]
 shape = SubResource("CapsuleShape2D_3864k")
 disabled = true
 debug_color = Color(0.9166973, 0.17005399, 0.56669986, 0.41960785)
+
+[node name="Center" type="Node2D" parent="." unique_id=801252314]
