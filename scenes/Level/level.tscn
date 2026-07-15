@@ -145,8 +145,16 @@ shape = SubResource("RectangleShape2D_vlvsn")
 [node name="SpawnerLeft" type="Node2D" parent="." unique_id=1963723707]
 position = Vector2(-761, 942)
 
+[node name="SpawnerTop1Left" type="Node2D" parent="." unique_id=485508026]
+position = Vector2(-805, 228)
+rotation = 0.28372627
+
 [node name="SpawneryRight" type="Node2D" parent="." unique_id=747254746]
 position = Vector2(2657, 915)
+
+[node name="SpawnerTop1Right" type="Node2D" parent="." unique_id=1650621605]
+position = Vector2(2804, 395)
+rotation = 0.56745255
 
 [node name="SpawnerTimer" type="Timer" parent="." unique_id=1069759113]
 autostart = true

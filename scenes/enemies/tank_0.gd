@@ -19,7 +19,6 @@ signal on_death
 signal on_taking_shoot
 
 func _ready() -> void:
-	$CollisionShape2D2.queue_free()
 	$Body.scale.x  = -direction * $Body.scale.x
 	if(direction > 0):
 		$Tank0Shield.rotation = PI

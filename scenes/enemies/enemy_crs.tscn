@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b5jwjmycjhg30"]
+[gd_scene format=3 uid="uid://b5jwjmycjhg30"]
 
 [ext_resource type="Texture2D" uid="uid://jioc0jniatva" path="res://assets/enemie/crs_back_arm.png" id="1_brrmv"]
 [ext_resource type="Script" uid="uid://ckvrm8ln7gart" path="res://scenes/enemies/enemy_crs.gd" id="1_g0u10"]
@@ -983,51 +983,51 @@ _data = {
 radius = 45.0
 height = 142.0
 
-[node name="EnemyCRS" type="CharacterBody2D"]
+[node name="EnemyCRS" type="CharacterBody2D" unique_id=925180274]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_g0u10")
 metadata/_edit_horizontal_guides_ = [67.0]
 
-[node name="body" type="Node2D" parent="."]
+[node name="body" type="Node2D" parent="." unique_id=1890588631]
 position = Vector2(0, 9)
 
-[node name="CrsBackArm" type="Sprite2D" parent="body"]
+[node name="CrsBackArm" type="Sprite2D" parent="body" unique_id=1673973883]
 position = Vector2(-11, -13)
 texture = ExtResource("1_brrmv")
 offset = Vector2(-12, 12)
 
-[node name="CrsBackLeg" type="Sprite2D" parent="body"]
+[node name="CrsBackLeg" type="Sprite2D" parent="body" unique_id=1521014293]
 position = Vector2(-10, 19)
 texture = ExtResource("3_f708u")
 offset = Vector2(0, 19)
 
-[node name="CrsFrontLeg" type="Sprite2D" parent="body"]
+[node name="CrsFrontLeg" type="Sprite2D" parent="body" unique_id=898177986]
 position = Vector2(14, 23)
 texture = ExtResource("2_g0u10")
 offset = Vector2(0, 15)
 
-[node name="CrsBody" type="Sprite2D" parent="body"]
+[node name="CrsBody" type="Sprite2D" parent="body" unique_id=604246903]
 position = Vector2(1, -5)
 texture = ExtResource("4_gbvbm")
 
-[node name="bodyBottom" type="Node2D" parent="body/CrsBody"]
+[node name="bodyBottom" type="Node2D" parent="body/CrsBody" unique_id=1849933259]
 position = Vector2(-1, 32)
 
-[node name="CrsHead" type="Sprite2D" parent="body"]
+[node name="CrsHead" type="Sprite2D" parent="body" unique_id=1644608156]
 position = Vector2(-11, -43)
 texture = ExtResource("5_awp8h")
 
-[node name="headBottom" type="Node2D" parent="body/CrsHead"]
+[node name="headBottom" type="Node2D" parent="body/CrsHead" unique_id=2030927967]
 position = Vector2(-1, 33)
 
-[node name="CrsFrontArm" type="Sprite2D" parent="body"]
+[node name="CrsFrontArm" type="Sprite2D" parent="body" unique_id=727645157]
 position = Vector2(27.407, -9.95702)
 rotation = 0.214952
 texture = ExtResource("6_12ic4")
 offset = Vector2(-36.9048, 18.2783)
 
-[node name="ZHitBox" type="Area2D" parent="body/CrsFrontArm"]
+[node name="ZHitBox" type="Area2D" parent="body/CrsFrontArm" unique_id=225238988]
 position = Vector2(-46.09089, 34.58413)
 collision_layer = 64
 collision_mask = 136
@@ -1035,40 +1035,38 @@ script = ExtResource("8_f708u")
 origin = "CRS"
 metadata/_custom_type_script = "uid://bbvmyj2cykdsp"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="body/CrsFrontArm/ZHitBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="body/CrsFrontArm/ZHitBox" unique_id=257777824]
 position = Vector2(-6.8389115, 1.4931049)
 rotation = 1.307085
 shape = SubResource("CapsuleShape2D_gbvbm")
 disabled = true
 
-[node name="Vision" type="Area2D" parent="body"]
+[node name="Vision" type="Area2D" parent="body" unique_id=929928576]
 position = Vector2(-17, -31)
 collision_layer = 64
 collision_mask = 136
 
-[node name="VisionCollisionShape2D2" type="CollisionShape2D" parent="body/Vision"]
+[node name="VisionCollisionShape2D2" type="CollisionShape2D" parent="body/Vision" unique_id=486377365]
 position = Vector2(-23, -13)
 shape = SubResource("CapsuleShape2D_g0u10")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=306532686]
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_p22s8")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_w12oc")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=698263860]
+libraries/ = SubResource("AnimationLibrary_w12oc")
 
-[node name="ZHurtBox" type="Area2D" parent="."]
+[node name="ZHurtBox" type="Area2D" parent="." unique_id=793375391]
 collision_layer = 32
 collision_mask = 16
 script = ExtResource("9_gbvbm")
 metadata/_custom_type_script = "uid://bcn3h40a6b2o5"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ZHurtBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZHurtBox" unique_id=1900487889]
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_awp8h")
-debug_color = Color(0.7030465, 0.48935717, 0.095277764, 0.41960785)
+debug_color = Color(0.7019608, 0.49019608, 0.09411765, 0.41960785)
 
 [connection signal="area_entered" from="body/Vision" to="." method="_on_vision_area_entered"]
 [connection signal="area_exited" from="body/Vision" to="." method="_on_vision_area_exited"]

@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://dkyjn3sgb2hc1"]
+
+[ext_resource type="Script" uid="uid://bhlsr3ajlcsov" path="res://scenes/BulletGun/copter_bullet.gd" id="1_mo7b1"]
+[ext_resource type="Texture2D" uid="uid://ce4p2j51fedu2" path="res://assets/bullets/bullet.png" id="2_6j3ls"]
+[ext_resource type="Texture2D" uid="uid://c013f0k33hny4" path="res://assets/bullets/bullet_dust_0.png" id="3_8t2sx"]
+[ext_resource type="Texture2D" uid="uid://dvru2t63w82uw" path="res://assets/bullets/bullet_dust_1.png" id="4_d3vcr"]
+[ext_resource type="Texture2D" uid="uid://dcajxdg04i81l" path="res://assets/bullets/bullet_dust_2.png" id="5_udm3b"]
+[ext_resource type="Texture2D" uid="uid://67x4fch11ayt" path="res://assets/bullets/bullet_dust_3.png" id="6_vs8bq"]
+[ext_resource type="Texture2D" uid="uid://cfxss24q1vl4p" path="res://assets/bullets/bullet_dust_4.png" id="7_wj6m8"]
+[ext_resource type="Script" uid="uid://bbvmyj2cykdsp" path="res://scenes/z_hit_box.gd" id="8_8txve"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fr42p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_8t2sx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_d3vcr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_udm3b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_vs8bq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wj6m8")
+}],
+"loop": 0,
+"name": &"boom",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ydg1"]
+size = Vector2(16, 21)
+
+[node name="Copter_Bullet" type="Node2D" unique_id=1625045412]
+script = ExtResource("1_mo7b1")
+
+[node name="Bullet" type="Sprite2D" parent="." unique_id=209428748]
+rotation = 1.5707964
+scale = Vector2(1.0965769, 1.5013096)
+texture = ExtResource("2_6j3ls")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=67425141]
+visible = false
+sprite_frames = SubResource("SpriteFrames_fr42p")
+animation = &"boom"
+
+[node name="ZHitBox" type="Area2D" parent="." unique_id=567206653 node_paths=PackedStringArray("collisionShape")]
+collision_layer = 64
+collision_mask = 137
+script = ExtResource("8_8txve")
+type = "bullet"
+collisionShape = NodePath("CollisionShape2D")
+origin = "copter"
+metadata/_custom_type_script = "uid://bbvmyj2cykdsp"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZHitBox" unique_id=1607781342]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_3ydg1")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

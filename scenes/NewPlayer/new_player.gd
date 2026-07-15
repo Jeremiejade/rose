@@ -68,7 +68,6 @@ func damageTakenManager(attack):
 	slidingState.puissance = attack.damage * SPEED / 4
 	if attack.origin == "tankShield":
 		velocity = (attack.position - $Center.global_position) * -2
-		print('velocity damageTakenManager : ',velocity)
 	else :
 		velocity.x = slidingState.puissance * attack.direction
 	slidingState.isActive = true
@@ -82,7 +81,6 @@ func refielFuel(delta: float) -> void:
 			curentJumpFuel = TOTAL_JUMP_FUEL
 
 func sliding(playerDirection, delta):
-	print('velo sliding : ', velocity.x)
 	if abs(velocity.x) > SPEED:
 		var modifier = 600;
 		if playerDirection == -slidingState.direction :

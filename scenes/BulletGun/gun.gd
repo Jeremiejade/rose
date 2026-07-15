@@ -9,3 +9,4 @@ func _process(_delta: float) -> void:
 		get_tree().root.add_child(bullet_instance)
 		bullet_instance.global_position = $Target.global_position
 		bullet_instance.rotation = global_rotation
+		

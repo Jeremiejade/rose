@@ -1,0 +1,549 @@
+[gd_scene format=3 uid="uid://g47fc8lgtn3k"]
+
+[ext_resource type="Script" uid="uid://deg68ngurlm5a" path="res://scenes/enemies/enemy_copter.gd" id="1_waxvt"]
+[ext_resource type="Texture2D" uid="uid://bfdmi17is6s7d" path="res://assets/enemie/copter/copter_top_1.png" id="2_57s0m"]
+[ext_resource type="Script" uid="uid://bcn3h40a6b2o5" path="res://scenes/z_hurt_box.gd" id="2_m8nhf"]
+[ext_resource type="Texture2D" uid="uid://csm2sapgt8jl2" path="res://assets/enemie/copter/copter_top_2.png" id="3_m8nhf"]
+[ext_resource type="Texture2D" uid="uid://dv6hwfkqi7isp" path="res://assets/enemie/copter/copter_top_3.png" id="4_bhkkl"]
+[ext_resource type="Texture2D" uid="uid://cfcokknpnr1am" path="res://assets/enemie/copter/copter_body.png" id="5_p4fei"]
+[ext_resource type="Texture2D" uid="uid://d3b2sg2roh6ku" path="res://assets/enemie/copter/copter_back.png" id="6_8sf0g"]
+[ext_resource type="Texture2D" uid="uid://c013f0k33hny4" path="res://assets/bullets/bullet_dust_0.png" id="8_lhotj"]
+[ext_resource type="Texture2D" uid="uid://dvru2t63w82uw" path="res://assets/bullets/bullet_dust_1.png" id="9_e2nng"]
+[ext_resource type="Texture2D" uid="uid://dcajxdg04i81l" path="res://assets/bullets/bullet_dust_2.png" id="10_lgtk6"]
+[ext_resource type="Texture2D" uid="uid://67x4fch11ayt" path="res://assets/bullets/bullet_dust_3.png" id="11_xtbx4"]
+[ext_resource type="Texture2D" uid="uid://cfxss24q1vl4p" path="res://assets/bullets/bullet_dust_4.png" id="12_5g8n0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5g8n0"]
+radius = 98.0816
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_3j3cu"]
+points = PackedVector2Array(-97.33671, -64.534775, 175.71669, -32.1948, -4.30838, 55.32656, -148.33154, 69.30294, -189.52107, 40.451187)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oookg"]
+radius = 47.999992
+
+[sub_resource type="Animation" id="Animation_lhotj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("copter/CopterTop1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("copter/CopterTop2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("copter/CopterTop3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("copter/CopterBack:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("copter:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ZHurtBox/CollisionShape2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-78, -18)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ZHurtBox/CollisionShape2D3:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(243.00003, -91.00001)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ZHurtBox/CollisionShape2D2:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ZHurtBox/CollisionShape2D2:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(119.32499, -30.02716)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("ZHurtBox/CollisionShape2D2:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.3081521]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("CollisionShape2D:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-78, -18)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("CollisionShape2D3:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(243.00003, -91.00001)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("CollisionShape2D2:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(119.32499, -30.02716)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("CollisionShape2D2:scale")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("CollisionShape2D2:rotation")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.3081521]
+}
+
+[sub_resource type="Animation" id="Animation_e2nng"]
+resource_name = "rotate_back"
+length = 0.3
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("copter/CopterBack:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [6.283185307179586, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("copter/CopterTop1:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("copter/CopterTop2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("copter/CopterTop3:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_lgtk6"]
+resource_name = "rotate_top"
+length = 0.15
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("copter/CopterTop1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.09911666, 0.15209213, 0.20004475, 0.25235668, 0.29982492),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, false, false, false, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("copter/CopterTop2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.09911666, 0.15209213, 0.20004475, 0.25235668, 0.29982492),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, false, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("copter/CopterTop3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15209213, 0.20004475, 0.25235668, 0.29982492),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, false, true, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_waxvt"]
+resource_name = "toRight"
+length = 0.001
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("copter:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ZHurtBox/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, -18)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ZHurtBox/CollisionShape2D3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-243, -91)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ZHurtBox/CollisionShape2D2:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ZHurtBox/CollisionShape2D2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-119.325, -30.027)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ZHurtBox/CollisionShape2D2:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.30892327760299615]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CollisionShape2D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, -18)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CollisionShape2D3:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.0009999999),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-243, -91)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CollisionShape2D2:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("CollisionShape2D2:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-119.325, -30.027)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("CollisionShape2D2:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.30892327760299615]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xtbx4"]
+_data = {
+&"RESET": SubResource("Animation_lhotj"),
+&"rotate_back": SubResource("Animation_e2nng"),
+&"rotate_top": SubResource("Animation_lgtk6"),
+&"toRight": SubResource("Animation_waxvt")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3j3cu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_lhotj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_e2nng")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lgtk6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_xtbx4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_5g8n0")
+}],
+"loop": 0,
+"name": &"boom",
+"speed": 20.0
+}]
+
+[node name="Enemy_copter" type="CharacterBody2D" unique_id=618421253]
+script = ExtResource("1_waxvt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1546942903]
+position = Vector2(-78, -18)
+rotation = -3.1415925
+shape = SubResource("CircleShape2D_5g8n0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1882298903]
+position = Vector2(119.32499, -30.02716)
+rotation = -0.3081521
+shape = SubResource("ConvexPolygonShape2D_3j3cu")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=290270252]
+position = Vector2(243.00003, -91.00001)
+rotation = -0.3081521
+scale = Vector2(0.9999997, 0.9999997)
+shape = SubResource("CircleShape2D_oookg")
+
+[node name="ZHurtBox" type="Area2D" parent="." unique_id=2119271679]
+collision_layer = 32
+collision_mask = 17
+script = ExtResource("2_m8nhf")
+metadata/_custom_type_script = "uid://bcn3h40a6b2o5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZHurtBox" unique_id=1939145866]
+position = Vector2(-78, -18)
+rotation = 3.1415927
+shape = SubResource("CircleShape2D_5g8n0")
+debug_color = Color(0.7024035, 0.49120593, 0, 0.41960785)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ZHurtBox" unique_id=1402058380]
+position = Vector2(119.32499, -30.02716)
+rotation = -0.3081521
+shape = SubResource("ConvexPolygonShape2D_3j3cu")
+debug_color = Color(0.7019608, 0.49019608, 0.09411765, 0.41960785)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ZHurtBox" unique_id=1505420733]
+position = Vector2(243.00003, -91.00001)
+rotation = -0.3081521
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("CircleShape2D_oookg")
+debug_color = Color(0.7019608, 0.49019608, 0.09411765, 0.41960785)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=951860337]
+libraries/ = SubResource("AnimationLibrary_xtbx4")
+
+[node name="copter" type="Node2D" parent="." unique_id=1836620333]
+
+[node name="CopterTop1" type="Sprite2D" parent="copter" unique_id=2117976527]
+position = Vector2(-78, -118)
+texture = ExtResource("2_57s0m")
+
+[node name="CopterTop2" type="Sprite2D" parent="copter" unique_id=1028136603]
+visible = false
+position = Vector2(-77, -118)
+texture = ExtResource("3_m8nhf")
+
+[node name="CopterTop3" type="Sprite2D" parent="copter" unique_id=2014303531]
+position = Vector2(-78, -117)
+texture = ExtResource("4_bhkkl")
+
+[node name="CopterBody" type="Sprite2D" parent="copter" unique_id=568184606]
+position = Vector2(44, -18)
+texture = ExtResource("5_p4fei")
+
+[node name="CopterBack" type="Sprite2D" parent="copter" unique_id=820157732]
+position = Vector2(242, -92)
+texture = ExtResource("6_8sf0g")
+
+[node name="ExplosionAnimation" type="AnimatedSprite2D" parent="." unique_id=852322314]
+visible = false
+position = Vector2(-29, -150)
+scale = Vector2(28.863636, 28.863636)
+sprite_frames = SubResource("SpriteFrames_3j3cu")
+animation = &"boom"
+
+[connection signal="animation_finished" from="ExplosionAnimation" to="." method="_on_explosion_animation_animation_finished"]
