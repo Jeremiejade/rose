@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var health := 30
+@export var health := 60
 @export var direction := 1
 @export var verticalAmplitude = 300
 @export var limiteToDespawn: float
@@ -8,13 +8,20 @@ extends CharacterBody2D
 const NAME = 'copter'
 const SPEED = 200.0
 
-var state := 'fly'
+const STATES = {
+	'fly':'fly',
+	'attack': 'attack',
+	'explode': 'explode',
+	'dead': 'dead',
+}
+
+var state := STATES.fly
 var verticalDirection := 1
 var initialPosition: Vector2
 
-var isAttacking := false
 var attackIsLaunched := false
 var reloadingTime := 3
+var roseGLobalePosition: Vector2
 
 signal on_despawn
 signal on_death
@@ -24,6 +31,7 @@ const BULLET_GUN = preload("res://scenes/BulletGun/copter_bullet.tscn")
 
 func _ready() -> void:
 	$AnimationPlayer.play("rotate_back")
+	roseGLobalePosition = gameConfig.rose.global_position
 	initialPosition = position
 	if direction == 1:
 		$copter.scale.x = -1
@@ -41,53 +49,57 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if health <= 0:
-		state = "dead"
-	
-	if state == "fly":
+		state = STATES.dead
+	if state == STATES.fly:
 		velocity.x = direction * SPEED
 		velocity.y = verticalDirection * SPEED/2
 		manageVerticalDirection()
-		canAttack()
-		if !attackIsLaunched and isAttacking:
+		
+	if state == STATES.attack:
+		velocity.x =  move_toward(velocity.x, 0, SPEED * delta)
+		velocity.y =  move_toward(velocity.y, 0, SPEED * delta)
+		if !attackIsLaunched:
 			launchAttack()
-	if state == 'dead':
+	if state == STATES.dead:
 		if is_on_floor():
-			state = 'explode'
+			state = STATES.explode
 		velocity.x += direction * SPEED/2 * delta
 		velocity.y += SPEED * 3 * delta
 
 		if abs(rotation) < PI/4:
 			rotation += PI/4 * delta * direction
-	if state == 'explode':
+	if state == STATES.explode:
 		velocity = Vector2(0, 0)
-	
+	manageAttack()
 	handleAnimation()
 	move_and_slide()
 	manageDespawn()
 	
 func handleAnimation():
-	if state == 'explode':
+	if state == STATES.explode:
 		$ExplosionAnimation.visible = true
 		$ExplosionAnimation.play("boom")
 
-func canAttack() -> void:
-	var roseGLobalePosition = gameConfig.rose.global_position
-	if abs(global_position - roseGLobalePosition).x < SPEED and !isAttacking:
-		isAttacking = true
+func manageAttack():
+	if(isNearFromTarget(100) and !attackIsLaunched):
+		state = STATES.attack
+		pass
+
+func isNearFromTarget(distance: float) -> bool:
+	return abs(global_position - roseGLobalePosition).x < distance
 	
 func launchAttack():
 	attackIsLaunched = true
 	for _i in range(3):
-		if state != 'fly':
+		if state != STATES.attack:
 			break
-		var intialPos = global_position.x
 		await get_tree().create_timer(0.5).timeout
 		var bullet_instance = BULLET_GUN.instantiate()
 		get_tree().root.add_child(bullet_instance)
 		bullet_instance.position = global_position
-	await get_tree().create_timer(reloadingTime).timeout
-	attackIsLaunched = false
-	isAttacking = false
+	# await get_tree().create_timer(reloadingTime).timeout
+	if state == STATES.attack:
+		state = STATES.fly
 
 
 func manageDespawn():
