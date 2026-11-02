@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://b6o1ouh6ggj2l"]
+
+[ext_resource type="Script" uid="uid://bd2le5s3jre8w" path="res://scenes/Level/level_zero.gd" id="1_7w7ri"]
+[ext_resource type="Texture2D" uid="uid://3kpb1jc2kplm" path="res://assets/level_1/sol.png" id="1_mcivh"]
+[ext_resource type="PackedScene" uid="uid://dymyjfjvgoyg5" path="res://scenes/NewPlayer/new_player.tscn" id="2_ddtjr"]
+[ext_resource type="Texture2D" uid="uid://c5bvor18d64td" path="res://assets/level_1/ciel.png" id="2_vdanj"]
+[ext_resource type="Script" uid="uid://0c82jhg2n2go" path="res://scenes/Level/camera_2d.gd" id="3_ddtjr"]
+[ext_resource type="PackedScene" uid="uid://k43skcolxlck" path="res://scenes/rose/rose.tscn" id="4_p663h"]
+[ext_resource type="Texture2D" uid="uid://0o4k6cpgs2da" path="res://assets/gui/health_bar_bg.png" id="5_sc2dh"]
+[ext_resource type="Texture2D" uid="uid://ckr4ofumoon1i" path="res://assets/gui/health_bar_progress.png" id="6_r8po5"]
+[ext_resource type="PackedScene" uid="uid://bsupaaee56uoe" path="res://scenes/hud/amo/amo_gun.tscn" id="7_r8po5"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ddtjr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p663h"]
+size = Vector2(35, 1305.5)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p663h"]
+distance = -628.0
+
+[node name="LevelZero" type="Node2D" unique_id=1506846712]
+script = ExtResource("1_7w7ri")
+
+[node name="Wall" type="StaticBody2D" parent="." unique_id=681034166]
+position = Vector2(970, -74)
+collision_layer = 4
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_ddtjr")
+
+[node name="Ciel" type="Sprite2D" parent="Wall" unique_id=977779811]
+position = Vector2(129, -1001)
+scale = Vector2(1.4531249, 1.3413084)
+texture = ExtResource("2_vdanj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall" unique_id=411624724]
+position = Vector2(-990, -313)
+shape = SubResource("RectangleShape2D_p663h")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Wall" unique_id=940988653]
+position = Vector2(1299, -306)
+shape = SubResource("RectangleShape2D_p663h")
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=1727987037]
+position = Vector2(382, -654)
+collision_mask = 87
+
+[node name="Sol" type="Sprite2D" parent="Ground" unique_id=882521975]
+position = Vector2(350.86206, 690.8343)
+scale = Vector2(1.0008312, 2.3841007)
+texture = ExtResource("1_mcivh")
+
+[node name="Sol2" type="Sprite2D" parent="Ground" unique_id=2095556599]
+position = Vector2(2224.862, 690.8343)
+scale = Vector2(1.0008312, 2.3841007)
+texture = ExtResource("1_mcivh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=1477694818]
+position = Vector2(-4, 19)
+shape = SubResource("WorldBoundaryShape2D_p663h")
+
+[node name="NewPlayer" parent="." unique_id=210544819 instance=ExtResource("2_ddtjr")]
+position = Vector2(1246, -156)
+
+[node name="Camera2D" type="Camera2D" parent="NewPlayer" unique_id=1975062625]
+position = Vector2(-280, -284)
+limit_left = -200
+limit_top = -10000006
+limit_right = 2367
+limit_bottom = 100
+limit_smoothed = true
+position_smoothing_enabled = true
+script = ExtResource("3_ddtjr")
+
+[node name="rose" parent="." unique_id=1163204023 instance=ExtResource("4_p663h")]
+position = Vector2(-111, -74)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=48625556]
+
+[node name="SkillCountText" type="RichTextLabel" parent="CanvasLayer" unique_id=1360534298]
+offset_left = 27.0
+offset_top = 47.0
+offset_right = 379.0
+offset_bottom = 206.0
+bbcode_enabled = true
+text = "[color=black]Ennemies Kill Count :[/color]"
+scroll_active = false
+
+[node name="SkillCountText2" type="RichTextLabel" parent="CanvasLayer" unique_id=203051115]
+offset_left = 197.0
+offset_top = 37.0
+offset_right = 540.0
+offset_bottom = 307.0
+bbcode_enabled = true
+text = "[color=black][b][font_size=30]0[/font_size][/b][/color]"
+scroll_active = false
+
+[node name="RoseLifeProgressBar" type="TextureProgressBar" parent="CanvasLayer" unique_id=1638675743]
+offset_left = 876.0
+offset_top = 39.0
+offset_right = 1561.0
+offset_bottom = 151.0
+scale = Vector2(0.4699998, 0.4699998)
+step = 0.1
+value = 50.0
+texture_under = ExtResource("5_sc2dh")
+texture_progress = ExtResource("6_r8po5")
+texture_progress_offset = Vector2(95.5, 15)
+
+[node name="PlayerAmoContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=2026487475]
+anchors_preset = -1
+anchor_left = 0.058000002
+anchor_top = 0.165
+anchor_right = 0.09900001
+anchor_bottom = 0.18300001
+offset_left = 1708.64
+offset_top = 864.8
+offset_right = 1709.9199
+offset_bottom = 865.36
+
+[node name="Amo0" parent="CanvasLayer/PlayerAmoContainer" unique_id=1131211639 instance=ExtResource("7_r8po5")]
+layout_mode = 2
+
+[node name="Amo1" parent="CanvasLayer/PlayerAmoContainer" unique_id=908780828 instance=ExtResource("7_r8po5")]
+layout_mode = 2
+
+[node name="Amo2" parent="CanvasLayer/PlayerAmoContainer" unique_id=1746494226 instance=ExtResource("7_r8po5")]
+layout_mode = 2
+
+[node name="Amo3" parent="CanvasLayer/PlayerAmoContainer" unique_id=1262479793 instance=ExtResource("7_r8po5")]
+layout_mode = 2
+
+[node name="Amo4" parent="CanvasLayer/PlayerAmoContainer" unique_id=1352728134 instance=ExtResource("7_r8po5")]
+layout_mode = 2
+
+[node name="Amo5" parent="CanvasLayer/PlayerAmoContainer" unique_id=1136736268 instance=ExtResource("7_r8po5")]
+layout_mode = 2

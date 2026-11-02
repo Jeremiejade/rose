@@ -14,8 +14,11 @@ var slidingState = {
 
 var ATTACKS = []
 
+signal on_update_amo
+
 func _ready() -> void:
 	gameConfig.player = self
+	$sprites/Gun.connect('on_amo_update', updateAmo)
 
 func _physics_process(delta: float) -> void:
 	for attack in ATTACKS:
@@ -125,3 +128,6 @@ func _animationState(direction: float, _isSliding: bool) -> String:
 func take_damage(attack) :
 	if(!attack.origin.begins_with('player')):
 		ATTACKS.push_front(attack)
+
+func updateAmo(state, size):
+	on_update_amo.emit(state, size)

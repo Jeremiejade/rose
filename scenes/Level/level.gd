@@ -42,8 +42,13 @@ const ROUND_1 = [
 	{
 		"name": 'copter',
 		"currentSpawn": 1,
-		"rng": 1,
-		"spawnCondition": []
+		"rng": 10,
+		"spawnCondition": [
+			{
+				"name": 'tank_0',
+				"kill": 1
+			}
+		],
 	},
 	{
 		"name": 'tank_0',
@@ -53,7 +58,7 @@ const ROUND_1 = [
 				"kill": 10
 			}
 		],
-		"currentSpawn": 2,
+		"currentSpawn": 1,
 		"rng": 10
 	},
 	{
@@ -77,7 +82,7 @@ func _ready() -> void:
 func addEnnemyByName(enemyName: String, parent: Node2D):
 	if enemyName == 'crs':
 		var positionAndDirection = getSpawnerPosition()
-		addRangeCrs(rng.randi_range(3,9), parent, positionAndDirection)
+		addRangeCrs(rng.randi_range(3,5), parent, positionAndDirection)
 	if enemyName == 'tank_0':
 		var positionAndDirection = getSpawnerPosition()
 		addTank0(parent, positionAndDirection)

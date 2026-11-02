@@ -43,7 +43,7 @@ func _ready() -> void:
 
 		$ZHurtBox/CollisionShape2D.position.x = -$ZHurtBox/CollisionShape2D.position.x
 		$ZHurtBox/CollisionShape2D3.position.x = -$ZHurtBox/CollisionShape2D3.position.x
-		$ZHurtBox/CollisionShape2D2.scale.x = -1
+		$ZHurtBox/CollisionShape2D2.scale.x = -1	
 		$ZHurtBox/CollisionShape2D2.rotation = -$ZHurtBox/CollisionShape2D2.rotation
 		$ZHurtBox/CollisionShape2D2.position.x = -$ZHurtBox/CollisionShape2D2.position.x
 
