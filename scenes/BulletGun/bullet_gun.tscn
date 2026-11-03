@@ -27,7 +27,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("7_56irk")
 }],
-"loop": false,
+"loop": 0,
 "name": &"boom",
 "speed": 20.0
 }]

@@ -15,16 +15,13 @@ func _process(_delta: float) -> void:
 	look_at(get_global_mouse_position())
 	if(isReloading):
 		return
-	if Input.is_action_just_pressed("reload") and gameConfig.player_amo != gameConfig.player_max_bullet:
 		
-		isReloading = true
-		var reloadTimeV = gameConfig.player_max_bullet - gameConfig.player_amo;
-		var timeToRelaod = reloadTimeV * (RELOAD_TIME / gameConfig.player_max_bullet)
-		on_amo_update.emit("reload", reloadTimeV)
-		await get_tree().create_timer(timeToRelaod).timeout;
-		isReloading = false
-		gameConfig.player_amo = gameConfig.player_max_bullet;
-	
+	if Input.is_action_just_pressed("reload") and gameConfig.player_amo != gameConfig.player_max_bullet:
+		reloading()
+		
+	if Input.is_action_just_pressed("fire") and gameConfig.player_amo == 0: 
+		reloading()
+		
 	if Input.is_action_just_pressed("fire") and gameConfig.player_amo > 0: 
 		var bullet_instance = BULLET_GUN.instantiate()
 		get_tree().root.add_child(bullet_instance)
@@ -32,3 +29,12 @@ func _process(_delta: float) -> void:
 		bullet_instance.rotation = global_rotation
 		gameConfig.player_amo -= 1
 		on_amo_update.emit("fire", 0)
+		
+func reloading():
+	isReloading = true
+	var reloadTimeV = gameConfig.player_max_bullet - gameConfig.player_amo;
+	var timeToRelaod = reloadTimeV * (RELOAD_TIME / gameConfig.player_max_bullet)
+	on_amo_update.emit("reload", reloadTimeV)
+	await get_tree().create_timer(timeToRelaod).timeout;
+	isReloading = false
+	gameConfig.player_amo = gameConfig.player_max_bullet;

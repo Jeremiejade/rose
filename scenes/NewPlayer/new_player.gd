@@ -2,10 +2,10 @@ class_name Player extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
+const MAX_HEIGHT := 1000;
 
-const TOTAL_JUMP_FUEL = 600
-var curentJumpFuel = TOTAL_JUMP_FUEL;
-var jumpFuelIsLoad = false;
+var VJumpVelocity = JUMP_VELOCITY
+
 var slidingState = { 
 	"isActive": false,
 	"direction": 0,
@@ -27,11 +27,7 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-		
-	var threshold = round(curentJumpFuel * 100 ) / TOTAL_JUMP_FUEL
-	$sprites/FrontLeg/FuelGauge.value = round(threshold)
-	refielFuel(delta)
-
+	
 	var direction = Input.get_axis("move_left", "move_right")
 	if slidingState.isActive:
 		sliding(direction, delta)
@@ -41,7 +37,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			flying(direction, delta)
 			
-	if Input.is_action_just_pressed("jump") and curentJumpFuel > 0 and is_on_floor() and rotation == 0:
+	if Input.is_action_just_pressed("jump") and is_on_floor() and rotation == 0:
 		velocity.y = JUMP_VELOCITY
 		
 	var animationState = _animationState(direction, slidingState.isActive);
@@ -76,13 +72,6 @@ func damageTakenManager(attack):
 	slidingState.isActive = true
 	slidingState.direction = attack.direction
 
-func refielFuel(delta: float) -> void:
-	if is_on_floor():
-		if curentJumpFuel < TOTAL_JUMP_FUEL:
-			curentJumpFuel += 1000 * delta
-		elif curentJumpFuel > TOTAL_JUMP_FUEL:
-			curentJumpFuel = TOTAL_JUMP_FUEL
-
 func sliding(playerDirection, delta):
 	if abs(velocity.x) > SPEED:
 		var modifier = 600;
@@ -105,11 +94,20 @@ func bounceManagement(collider: CollisionObject2D, oldVelocity: Vector2) -> void
 func flying(direction: float, delta: float) -> void:
 	if direction != 0:
 		rotate(direction * delta * 3)
-	if Input.is_action_pressed("jump") and curentJumpFuel > 0:
+	if Input.is_action_pressed("jump"):
 		$sprites/PowerFuel.start = true
-		var v = Vector2(0,JUMP_VELOCITY).rotated(rotation)
-		curentJumpFuel -= 500 * delta
+		var v = Vector2(0,VJumpVelocity).rotated(rotation)
 		velocity += v * delta * 3.5
+	if (position.y > -MAX_HEIGHT):
+		VJumpVelocity = JUMP_VELOCITY;
+	else:
+		
+		var deltaPos;
+		if(abs(position.y + MAX_HEIGHT) < 10):
+			deltaPos = 1 
+		else :
+			deltaPos = abs(position.y + MAX_HEIGHT) / 10
+		VJumpVelocity = JUMP_VELOCITY +  deltaPos
 	
 func movingOnTheFloor(direction: float) -> void:
 	if direction != 0:

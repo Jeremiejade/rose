@@ -1,6 +1,6 @@
 extends Node2D
 
-const SPEED: int = 900
+const SPEED: int = 1800
 
 var isExplosing = false
 
