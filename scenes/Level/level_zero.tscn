@@ -13,13 +13,23 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ddtjr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p663h"]
-size = Vector2(35, 1305.5)
+size = Vector2(55.5, 4101.75)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p663h"]
 distance = -628.0
 
 [node name="LevelZero" type="Node2D" unique_id=1506846712]
 script = ExtResource("1_7w7ri")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1975062625]
+position = Vector2(966, -440)
+zoom = Vector2(0.8, 0.8)
+limit_left = -200
+limit_top = -10000006
+limit_right = 3500
+limit_bottom = 100
+position_smoothing_enabled = true
+script = ExtResource("3_ddtjr")
 
 [node name="Wall" type="StaticBody2D" parent="." unique_id=681034166]
 position = Vector2(970, -74)
@@ -28,16 +38,16 @@ collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_ddtjr")
 
 [node name="Ciel" type="Sprite2D" parent="Wall" unique_id=977779811]
-position = Vector2(129, -1001)
-scale = Vector2(1.4531249, 1.3413084)
+position = Vector2(729.00006, -1848.9248)
+scale = Vector2(2.078125, 1.9182153)
 texture = ExtResource("2_vdanj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall" unique_id=411624724]
-position = Vector2(-990, -313)
+position = Vector2(-1000.25, -1711.125)
 shape = SubResource("RectangleShape2D_p663h")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Wall" unique_id=940988653]
-position = Vector2(1299, -306)
+position = Vector2(2593, -1844)
 shape = SubResource("RectangleShape2D_p663h")
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=1727987037]
@@ -60,16 +70,6 @@ shape = SubResource("WorldBoundaryShape2D_p663h")
 
 [node name="NewPlayer" parent="." unique_id=210544819 instance=ExtResource("2_ddtjr")]
 position = Vector2(1246, -156)
-
-[node name="Camera2D" type="Camera2D" parent="NewPlayer" unique_id=1975062625]
-position = Vector2(-280, -284)
-limit_left = -200
-limit_top = -10000006
-limit_right = 2367
-limit_bottom = 100
-limit_smoothed = true
-position_smoothing_enabled = true
-script = ExtResource("3_ddtjr")
 
 [node name="rose" parent="." unique_id=1163204023 instance=ExtResource("4_p663h")]
 position = Vector2(-111, -74)

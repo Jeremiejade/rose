@@ -20,7 +20,6 @@ func updateAmo(state, size):
 		for index in size:
 			if(index == size):
 				break
-			print(index-size, '     ' ,amos[index - size])
 			amos[index - size].visible = true;
 			await get_tree().create_timer(1/gameConfig.player_max_bullet).timeout;
 		return
